@@ -1,23 +1,57 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login | BrusselsExplorer</title>
-  <link rel="stylesheet" href="css/styl.css">
+  <link rel="stylesheet" href="css/styl.css" />
 </head>
 <body>
-  <main class="login-page">
-    <section class="login-container">
-      <h2>🔐 Login</h2>
-      <form class="login-form">
-        <input type="email" placeholder="E-mailadres" required>
-        <input type="password" placeholder="Wachtwoord" required>
-        <button type="submit">Inloggen</button>
-      </form>
-      <p class="terug"><a href="index.html">← Terug naar Home</a></p>
-    </section>
+  <!-- Notatie : nav van verschillende pagina's -->
+  <header>
+    <nav class="navigatiebalk">
+      <a href="index.html">
+        <img src="images/logo%20brussel%20parcours.png" alt="Logo BrusselsExplorer" class="logo" />
+      </a>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="comicbook.html">Stripmuren</a></li>
+        <li><a href="locatie.html">Locatie</a></li>
+        <li><a href="about.html">Over</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="login.html" class="active">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- notatie: login gegevens maken-->
+  <header class="pagina-header">
+    <h1>Login of Maak een account</h1>
+  </header>
+
+  <main class="login-container">
+    <form class="login-form">
+      <label for="email">📧 E-mailadres</label>
+      <input type="email" id="email" name="email" required placeholder="E-mail" />
+
+      <label for="password">🔐 Wachtwoord</label>
+      <input type="password" id="password" name="password" required placeholder="Wachtwoord" />
+
+      <button type="submit">Inloggen</button>
+
+      <p class="form-extra">Nog geen account? <a href="#">Registreer hier</a></p>
+    </form>
   </main>
-  <script src="js/login.js"></script>
+
+  <footer class="voettekst">
+    <div class="voettekst-inhoud">
+      <p>© Kiran Jamil Chaud-Ry & Lina Benhanj | Project Dynamic Web |</p>
+    </div>
+  </footer>
+
+  <!-- notatie : script toevoegen -->
+<script src="js/index.js"></script>
+<script src="js/login.js"></script>
+
 </body>
 </html>

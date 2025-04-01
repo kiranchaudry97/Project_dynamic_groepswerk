@@ -8,7 +8,7 @@ body {
   transition: background-color 0.3s, color 0.3s;
 }
 
-/* 🌙 Thema Toggle & Taal */
+/*  Thema Toggle & Taal */
 .top-controls {
   display: flex;
   justify-content: space-between;
@@ -53,7 +53,7 @@ body.dark #taal:hover {
   border-color: #666;
 }
 
-/* ✅ Navigatie */
+/*navigatie*/
 .navigatiebalk {
   display: flex;
   justify-content: space-between;
@@ -95,7 +95,7 @@ body.dark #taal:hover {
   vertical-align: middle;
 }
 
-/* ✅ Banner met tekst erbovenop */
+/*  Banner  */
 .banner {
   position: relative;
   width: 100%;
@@ -133,7 +133,7 @@ body.dark #taal:hover {
   margin: 0;
 }
 
-/* ✅ Stripmenu */
+/* Stripmenu */
 .gelijke-kolommen {
   display: flex;
   flex-direction: column;
@@ -183,7 +183,7 @@ body.dark .voettekst {
   background-color: #1c1c3a;
 }
 
-/* ✅ Skills */
+/* skills */
 .vaardigheden-raster {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -206,7 +206,7 @@ body.dark .voettekst {
   transform: scale(1.1);
 }
 
-/* ✅ Footer */
+/* footer */
 .voettekst {
   background-color: #44948c;
   padding: 20px;
@@ -229,7 +229,7 @@ body.dark .voettekst {
   text-decoration: none;
 }
 
-/* ✅ Responsive tweaks */
+/* responsive  */
 @media screen and (max-width: 768px) {
   .banner {
     max-height: 180px;
@@ -247,9 +247,8 @@ body.dark .voettekst {
 
 
 
-/*locatie*/
+/*locatie pagina*/
 
-/*  Locatiesectie */
 .locatie-container {
   padding: 40px 20px;
   max-width: 1200px;
@@ -441,7 +440,7 @@ body.dark .voettekst {
 }
 
 
-  /* locatie-detail.css */
+ 
 .detail-container {
   max-width: 900px;
   margin: 40px auto;
@@ -476,4 +475,210 @@ body.dark .voettekst {
   width: 100%;
   border-radius: 12px;
   margin-top: 20px;
+}
+
+
+/*  contact pagina */
+
+.pagina-header {
+  text-align: center;
+  padding: 40px 20px 20px;
+  background-color: #dedcff;
+  font-family: "Outfit", sans-serif;
+}
+
+.pagina-header h1 {
+  font-size: 2.5rem;
+  color: #1c1c3a;
+  margin: 0;
+}
+
+.contact-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: "Outfit", sans-serif;
+}
+
+.contact-gegevens {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-gegevens h2 {
+  font-size: 1.5rem;
+  margin-top: 30px;
+  color: #C4501B;
+  font-weight: 600;
+}
+
+.contact-gegevens p {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  max-width: 600px;
+}
+
+.contact-gegevens a {
+  color: #000;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.contact-gegevens a:hover {
+  color: #433bff;
+  text-decoration: underline;
+}
+
+.google-map {
+  margin-top: 20px;
+  border-radius: 12px;
+  overflow: hidden;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.google-map iframe {
+  display: block;
+  width: 100%;
+  height: 300px;
+  border: 0;
+  border-radius: 12px;
+}
+
+.contact-container h2:last-of-type {
+  text-align: center;
+  margin-top: 40px;
+  color: #C4501B;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+
+/*about pagina */
+
+.pagina-header {
+  text-align: center;
+  padding: 40px 20px 20px;
+  background-color: #dedcff;
+  font-family: "Outfit", sans-serif;
+}
+
+.pagina-header h1 {
+  font-size: 2.5rem;
+  color: #1c1c3a;
+  margin: 0;
+}
+
+.contact-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: "Outfit", sans-serif;
+}
+
+.contact-gegevens {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-gegevens h2 {
+  font-size: 1.5rem;
+  margin-top: 30px;
+  color: #C4501B;
+  font-weight: 600;
+}
+
+.contact-gegevens p {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  max-width: 600px;
+  text-align: center;
+}
+
+.contact-gegevens a {
+  color: #000;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.contact-gegevens a:hover {
+  color: #433bff;
+  text-decoration: underline;
+}
+
+
+/*Login pagina */
+
+.login-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  text-align: center;
+  font-family: "Outfit", sans-serif;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background-color: #f5f5f5;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+}
+
+.login-form label {
+  font-weight: 500;
+  text-align: left;
+  color: #333;
+}
+
+.login-form input {
+  padding: 10px;
+  border-radius: 30px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.login-form input:focus {
+  border-color: #C4501B;
+}
+
+.login-form button {
+  padding: 10px;
+  border: none;
+  background-color: #C4501B;
+  color: white;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.login-form button:hover {
+  background-color: #a63d15;
+}
+
+.form-extra {
+  font-size: 0.9rem;
+}
+
+.form-extra a {
+  color: #433bff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.form-extra a:hover {
+  text-decoration: underline;
 }
