@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Locaties | BrusselsExplorer</title>
+  <link rel="stylesheet" href="css/styl.css">
+  
+</head>
+<body>
+
+<!-- NAVIGATIE -->
+<nav class="navigatiebalk">
+  <a href="index.html">
+    <img src="images/logo%20brussel%20parcours.png" alt="Logo BrusselsExplorer" class="logo">
+  </a>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="comicbook.html">Stripmuren</a></li>
+    <li><a href="locatie.html" class="active">Locatie</a></li>
+    <li><a href="about.html">Over</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="login.html" id="login">Login</a></li>
+  </ul>
+</nav>
+
+<!--ZOEKBALK-->
+<div class="filters">
+    <input type="text" id="zoekveld" placeholder="Zoek op titel of beschrijving...">
+    <select id="auteurFilter">
+      <option value="">Alle kunstenaars</option>
+      <option value="">Alle kunst</option>
+      <option value="">Alle kunst op straat</option>
+
+    </select>
+  </div>
+  
+
+
+<!-- LOCATIES -->
+<section class="locatie-container">
+  <h1>📍 Stripmuren & Locaties in Brussel</h1>
+  <p>Ontdek meer dan 20 unieke locaties met stripkunst verspreid over de stad.</p>
+
+  <div id="locaties" class="locatie-grid">
+    <!-- Dynamisch gegenereerde kaarten komen hier via JS -->
+  </div>
+</section>
+
+<script src="js/index.js"></script>
+
+
+</body>
+</html>

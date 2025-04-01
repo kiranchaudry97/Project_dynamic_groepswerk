@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="keywords" content="inhoud voorpagina">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BrusselsExplorer</title>
   <link rel="stylesheet" href="css/styl.css">
 </head>
@@ -10,38 +11,41 @@
 
 <!-- THEMA SWITCH & TAAL -->
 <div class="top-controls">
-    <button id="toggleTheme">🌙 Donker / Licht</button>
-    <select id="taal">
-      <option value="nl">Nederlands</option>
-      <option value="fr">Frans</option>
-      <option value="en">Engels</option>
-    </select>
-  </div>
+  <button id="toggleTheme">🌙 Donker / Licht</button>
+  <select id="taal">
+    <option value="nl">Nederlands</option>
+    <option value="fr">Frans</option>
+    <option value="en">Engels</option>
+  </select>
 </div>
 
-<!-- NAVIGATIE -->
 <nav class="navigatiebalk">
+  <!-- Logo links -->
+  <a href="index.html">
+    <img src="images/logo%20brussel%20parcours.png" alt="Logo BrusselsExplorer" class="logo">
+  </a>
+
+  <!-- Navigatie rechts -->
   <ul>
     <li><a href="index.html">Home</a></li>
-    <li><a href="comicbook.html">Comic book</a></li>
-    <li><a href="locatie.html">Favoriete Locatie</a></li>
+    <li><a href="comicbook.html">Stripmuren</a></li>
+    <li><a href="locatie.html">Locatie</a></li>
     <li><a href="about.html">Over</a></li>
     <li><a href="contact.html">Contact</a></li>
-    <li><button id="login">Login</button></li>
+    <li><a href="login.html" id="login">Login</a></li>
   </ul>
 </nav>
 
-<!-- INTRO -->
-<section class="raster horizontale-intro">
-  <div id="fotointro">
-    <img class="profiel-foto" src="/image/profile.jpg" alt="Avatar">
-  </div>
-  <div class="introductie">
+<!-- BANNER en intro -->
+<section class="banner">
+  <img src="images/stripart.jpg" alt="Bannerafbeelding">
+  <div class="banner-tekst">
     <h1>🏜️ Welkom op BrusselsExplorer !</h1>
     <h3>Bekijk onze interessante comic parkours in Brussel.<br>
         Ontdek de kleurrijke stripmuurschilderingen die onze stad tot leven brengen.</h3>
   </div>
 </section>
+
 
 <!-- FILTER + ZOEK -->
 <section class="gelijke-kolommen">
@@ -62,7 +66,6 @@
     </div>
   </div>
 </section>
-
 
 <!-- FOOTER -->
 <footer class="voettekst">

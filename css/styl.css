@@ -8,7 +8,7 @@ body {
   transition: background-color 0.3s, color 0.3s;
 }
 
-/* 🔁 Taal & Thema Toggle - Eenvoudige strakke stijl */
+/* 🌙 Thema Toggle & Taal */
 .top-controls {
   display: flex;
   justify-content: space-between;
@@ -21,7 +21,7 @@ body {
 #taal {
   padding: 6px 12px;
   font-size: 0.9rem;
-  border: 1px solid #433bff;
+  border: 1px solid #2c8474;
   border-radius: 100px;
   background-color: #f5f5f5;
   color: #333;
@@ -56,18 +56,19 @@ body.dark #taal:hover {
 /* ✅ Navigatie */
 .navigatiebalk {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background-color: #433bff;
+  background-color: #44948c;
 }
 
 .navigatiebalk ul {
-  list-style-type: none;
+  list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
   gap: 25px;
+  align-items: center;
 }
 
 .navigatiebalk ul li a {
@@ -77,61 +78,59 @@ body.dark #taal:hover {
   padding: 10px 15px;
   text-decoration: none;
   font-weight: 500;
-  transition: background-color 0.1s, box-shadow 0.1s, border-radius 0.1s;
+  border-radius: 100px;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .navigatiebalk ul li a:hover {
-  background-color: #050315;
-  border-radius: 100px;
-  color: white;
+  background-color: white;
+  color: black;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* ✅ Intro */
-.raster.horizontale-intro {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: 60px 20px;
-  background-color: #dedcff;
+/* Logo */
+.logo {
+  height: 35px;
+  width: auto;
+  vertical-align: middle;
+}
+
+/* ✅ Banner met tekst erbovenop */
+.banner {
+  position: relative;
+  width: 100%;
+  max-height: 250px;
+  overflow: hidden;
+}
+
+.banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(65%);
+}
+
+.banner-tekst {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
   text-align: center;
-  gap: 30px;
+  max-width: 90%;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
 }
 
-.raster .introductie {
-  color: white;
-  max-width: 600px;
-  padding: 20px;
-  border-radius: 15px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+.banner-tekst h1 {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
 }
 
-.raster .introductie h1 {
-  color: white;
-  font-size: 2.5rem;
-  font-weight: 500;
-  margin-bottom: 15px;
-}
-
-.raster .introductie p {
-  color: white;
+.banner-tekst h3 {
   font-size: 1.1rem;
-  line-height: 1.6;
+  font-weight: 400;
   margin: 0;
-}
-
-#fotointro {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 10px 0;
-}
-
-#fotointro img.profiel-foto {
-  width: 200px;
-  height: auto;
-  border-radius: 50%;
-  box-shadow: 2px 2px 10px #1d2429;
 }
 
 /* ✅ Stripmenu */
@@ -173,7 +172,7 @@ body.dark #taal:hover {
   margin: 0;
 }
 
-/* Donkere modus voor strip & navigatie */
+/* Donkere modus voor blokken & navigatie */
 body.dark .striponderdeel,
 body.dark .stripmenu {
   background-color: #2a2a2a;
@@ -209,7 +208,7 @@ body.dark .voettekst {
 
 /* ✅ Footer */
 .voettekst {
-  background-color: #433bff;
+  background-color: #44948c;
   padding: 20px;
   text-align: center;
   color: white;
@@ -230,4 +229,154 @@ body.dark .voettekst {
   text-decoration: none;
 }
 
-.voettekst
+/* ✅ Responsive tweaks */
+@media screen and (max-width: 768px) {
+  .banner {
+    max-height: 180px;
+  }
+
+  .banner-tekst h1 {
+    font-size: 1.5rem;
+  }
+
+  .banner-tekst h3 {
+    font-size: 0.95rem;
+  }
+
+}
+
+
+
+/*locatie*/
+
+/*  Locatiesectie */
+.locatie-container {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.locatie-container h1 {
+  font-size: 2rem;
+  color: #C4501B;
+  margin-bottom: 10px;
+}
+
+.locatie-container p {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+/*  Locatie-grid */
+.locatie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+/* Locatiekaart */
+.locatie-kaart {
+  background-color: #C4501B;
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.locatie-kaart:hover {
+  transform: scale(1.02);
+}
+
+/*  Afbeelding */
+.locatie-afbeelding {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+}
+
+/* Inhoud */
+
+.locatie-container {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.locatie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.locatie-kaart {
+  background-color: #f5f5f5;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.locatie-kaart:hover {
+  transform: translateY(-5px);
+}
+
+.locatie-afbeelding {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.locatie-inhoud {
+  padding: 15px;
+}
+
+.locatie-inhoud h2 {
+  font-size: 1.2rem;
+  margin: 0 0 10px 0;
+}
+
+.locatie-inhoud p {
+  font-size: 0.95rem;
+  margin: 4px 0;
+  color: #333;
+}
+
+@media screen and (max-width: 600px) {
+  .locatie-afbeelding {
+    height: 150px;
+  }
+}
+
+/*filters van zoekbalk*/
+.filters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin: 20px auto;
+  max-width: 800px;
+}
+
+.filters input,
+.filters select {
+  padding: 10px 15px;
+  border-radius: 30px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+  min-width: 200px;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.filters input:focus,
+.filters select:focus {
+  outline: none;
+  border-color: #C4501B;
+}
