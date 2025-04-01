@@ -1,20 +1,32 @@
-// Thema toggle
 document.addEventListener('DOMContentLoaded', () => {
+  // =================== THEMA ===================
   const toggleButton = document.getElementById('toggleTheme');
   const body = document.body;
 
   if (toggleButton) {
     toggleButton.addEventListener('click', () => {
-      const isDark = body.classList.contains('dark');
-      body.classList.toggle('dark');
-      localStorage.setItem('theme', isDark ? 'light' : 'dark');
+      const currentTheme = body.classList.contains('dark') ? 'dark' : 'light';
+
+      switch (currentTheme) {
+        case 'dark':
+          body.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
+          break;
+        case 'light':
+        default:
+          body.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+          break;
+      }
     });
 
     const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') body.classList.add('dark');
+    if (savedTheme === 'dark') {
+      body.classList.add('dark');
+    }
   }
 
-  // Locatiepagina logica
+  // =================== LOCATIE LIJST PAGINA ===================
   const locatieContainer = document.getElementById("locaties");
   const zoekveld = document.getElementById("zoekveld");
   const auteurFilter = document.getElementById("auteurFilter");
@@ -45,6 +57,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function toonLocaties(data) {
       locatieContainer.innerHTML = "";
       data.forEach((record, index) => {
+        console.log("📄 Volledige record:", record);
+
         const titel = record.titre || `Locatie ${index + 1}`;
         const beschrijving = record.description || "Geen beschrijving beschikbaar.";
         const adres = record.adresse || "Geen adres vermeld.";
@@ -54,11 +68,14 @@ document.addEventListener('DOMContentLoaded', () => {
         let afbeelding = "https://via.placeholder.com/400x200?text=Geen+afbeelding";
         if (record.images && Array.isArray(record.images)) {
           const eersteAfbeelding = record.images.find(img => img.url);
-          if (eersteAfbeelding) afbeelding = eersteAfbeelding.url;
+          if (eersteAfbeelding) {
+            afbeelding = eersteAfbeelding.url;
+          }
         }
 
         const kaart = document.createElement("div");
         kaart.className = "locatie-kaart";
+
         kaart.innerHTML = `
           <img src="${afbeelding}" alt="Afbeelding van ${titel}" class="locatie-afbeelding">
           <div class="locatie-inhoud">
@@ -66,7 +83,8 @@ document.addEventListener('DOMContentLoaded', () => {
             <p><strong>🎨 Kunst:</strong> ${auteur}</p>
             <p><strong>📍 Locatie:</strong> ${adres}</p>
             <p><strong>📅 Jaar:</strong> ${realisatie}</p>
-            <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(adres)}" target="_blank" class="kaart-link">🔗 Open in Google Maps</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(adres)}" 
+               target="_blank" class="kaart-link">🔗 Open in Google Maps</a>
           </div>
         `;
 
@@ -177,10 +195,12 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchLocaties();
   }
 
-  // Detailpagina logica
+  // =================== LOCATIE DETAIL PAGINA ===================
   const detailDiv = document.getElementById("locatie-detail");
   if (detailDiv) {
     const data = JSON.parse(sessionStorage.getItem("detailLocatie"));
+    console.log("📦 Gegevens ontvangen:", data);
+
     if (data) {
       const afbeelding = data.images?.[0]?.url || "https://via.placeholder.com/800x300?text=Geen+afbeelding";
       const googleMapsLink = data.geo_point_2d

@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
+<!-- notatie : navigatie balke en de andere pagina's, logo -->
 
 <nav class="navigatiebalk">
   <a href="index.html">
@@ -23,7 +24,7 @@
   </ul>
 </nav>
 
-<!-- Filters -->
+<!-- notatie : kunnen filter en zoeken -->
 <div class="filters">
   <input type="text" id="zoekveld" placeholder="Zoek op titel of beschrijving..." />
   <select id="auteurFilter"><option value="">Alle kunstenaars</option></select>
@@ -36,10 +37,11 @@
   </select>
 </div>
 
-<!-- Toggle tussen lijst en kaart -->
+<!-- notatie : toggle lijst van wisselen naar kaart en gewone overzicht-->
 <div class="toggle-view">
   <button id="toggleView">Wissel naar kaartweergave</button>
 </div>
+<!-- notatie : locatie container het informaite -->
 
 <section class="locatie-container">
   <h1>📍 Stripmuren & Locaties in Brussel</h1>
@@ -48,7 +50,7 @@
   <div id="map"></div>
 </section>
 
-<!-- Scripts -->
+<!-- notatie : script-->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="js/index.js"></script>
 </body>
