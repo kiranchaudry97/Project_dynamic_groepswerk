@@ -380,3 +380,100 @@ body.dark .voettekst {
   outline: none;
   border-color: #C4501B;
 }
+
+
+/*favoeriet*/
+
+.kaart-link {
+  display: inline-block;
+  margin-top: 8px;
+  color: white;
+  background-color: #2c8474;
+  padding: 6px 12px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.favoriet-btn {
+  margin-top: 10px;
+  padding: 6px 12px;
+  border: none;
+  background-color: #ffffff33;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.favoriet-btn.actief {
+  background-color: #ff5555;
+  color: white;
+}
+
+
+/*Map*/
+
+#map {
+  height: 500px;
+  width: 100%;
+  margin-top: 30px;
+  display: none;
+  border-radius: 20px;
+  overflow: hidden;
+}
+.toggle-view {
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+}
+.toggle-view button {
+  padding: 8px 16px;
+  background-color: #C4501B;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.toggle-view button:hover {
+  background-color: #a63d15;
+}
+
+
+  /* locatie-detail.css */
+.detail-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.detail-container img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.detail-container h1 {
+  color: #C4501B;
+  margin-bottom: 10px;
+}
+
+.detail-container p {
+  font-size: 1rem;
+  color: #333;
+  margin: 6px 0;
+}
+
+#map {
+  height: 300px;
+  width: 100%;
+  border-radius: 12px;
+  margin-top: 20px;
+}
