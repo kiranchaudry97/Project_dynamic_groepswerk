@@ -1,0 +1,233 @@
+@import url('https://fonts.googleapis.com/css2?family=Boldonse&family=Chewy&family=Hind+Siliguri:wght@300;400;500;600;700&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lilita+One&family=Montserrat&family=Outfit:wght@100..900&family=Port+Lligat+Slab&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sigmar+One&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  font-family: "Outfit", sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* 🔁 Taal & Thema Toggle - Eenvoudige strakke stijl */
+.top-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  gap: 10px;
+}
+
+#toggleTheme,
+#taal {
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  border: 1px solid #433bff;
+  border-radius: 100px;
+  background-color: #f5f5f5;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+#toggleTheme:hover,
+#taal:hover {
+  background-color: #e0e0e0;
+  border-color: #999;
+}
+
+body.dark {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+body.dark #toggleTheme,
+body.dark #taal {
+  background-color: #1e1e1e;
+  color: #f0f0f0;
+  border: 1px solid #444;
+}
+
+body.dark #toggleTheme:hover,
+body.dark #taal:hover {
+  background-color: #333;
+  border-color: #666;
+}
+
+/* ✅ Navigatie */
+.navigatiebalk {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #433bff;
+}
+
+.navigatiebalk ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 25px;
+}
+
+.navigatiebalk ul li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 10px 15px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.1s, box-shadow 0.1s, border-radius 0.1s;
+}
+
+.navigatiebalk ul li a:hover {
+  background-color: #050315;
+  border-radius: 100px;
+  color: white;
+}
+
+/* ✅ Intro */
+.raster.horizontale-intro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 60px 20px;
+  background-color: #dedcff;
+  text-align: center;
+  gap: 30px;
+}
+
+.raster .introductie {
+  color: white;
+  max-width: 600px;
+  padding: 20px;
+  border-radius: 15px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.raster .introductie h1 {
+  color: white;
+  font-size: 2.5rem;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.raster .introductie p {
+  color: white;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+#fotointro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+}
+
+#fotointro img.profiel-foto {
+  width: 200px;
+  height: auto;
+  border-radius: 50%;
+  box-shadow: 2px 2px 10px #1d2429;
+}
+
+/* ✅ Stripmenu */
+.gelijke-kolommen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  padding: 40px 20px;
+}
+
+.stripmenu,
+.striponderdeel {
+  width: 100%;
+  max-width: 800px;
+  min-height: 350px;
+  background-color: #C4501B;
+  border-radius: 50px;
+  padding: 40px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.stripmenu h1,
+.striponderdeel h1 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: white;
+}
+
+.stripmenu p,
+.striponderdeel p {
+  font-size: 1.1rem;
+  color: white;
+  margin: 0;
+}
+
+/* Donkere modus voor strip & navigatie */
+body.dark .striponderdeel,
+body.dark .stripmenu {
+  background-color: #2a2a2a;
+}
+
+body.dark .navigatiebalk,
+body.dark .voettekst {
+  background-color: #1c1c3a;
+}
+
+/* ✅ Skills */
+.vaardigheden-raster {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 30px;
+  justify-items: center;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+}
+
+.vaardigheden-raster img {
+  width: 35px;
+  height: auto;
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.5));
+  transition: transform 0.3s ease;
+}
+
+.vaardigheden-raster img:hover {
+  transform: scale(1.1);
+}
+
+/* ✅ Footer */
+.voettekst {
+  background-color: #433bff;
+  padding: 20px;
+  text-align: center;
+  color: white;
+  font-size: 0.95rem;
+  margin-top: 50px;
+  z-index: 10;
+  position: relative;
+}
+
+.voettekst-inhoud {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.voettekst-inhoud a {
+  color: #2a3843;
+  margin: 0 8px;
+  text-decoration: none;
+}
+
+.voettekst

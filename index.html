@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="keywords" content="inhoud voorpagina">
+  <title>BrusselsExplorer</title>
+  <link rel="stylesheet" href="css/styl.css">
+</head>
+<body>
+
+<!-- THEMA SWITCH & TAAL -->
+<div class="top-controls">
+    <button id="toggleTheme">🌙 Donker / Licht</button>
+    <select id="taal">
+      <option value="nl">Nederlands</option>
+      <option value="fr">Frans</option>
+      <option value="en">Engels</option>
+    </select>
+  </div>
+</div>
+
+<!-- NAVIGATIE -->
+<nav class="navigatiebalk">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="comicbook.html">Comic book</a></li>
+    <li><a href="locatie.html">Favoriete Locatie</a></li>
+    <li><a href="about.html">Over</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><button id="login">Login</button></li>
+  </ul>
+</nav>
+
+<!-- INTRO -->
+<section class="raster horizontale-intro">
+  <div id="fotointro">
+    <img class="profiel-foto" src="/image/profile.jpg" alt="Avatar">
+  </div>
+  <div class="introductie">
+    <h1>🏜️ Welkom op BrusselsExplorer !</h1>
+    <h3>Bekijk onze interessante comic parkours in Brussel.<br>
+        Ontdek de kleurrijke stripmuurschilderingen die onze stad tot leven brengen.</h3>
+  </div>
+</section>
+
+<!-- FILTER + ZOEK -->
+<section class="gelijke-kolommen">
+  <div class="stripmenu">
+    <div class="striponderdeel">
+      <h1>Strip route</h1>
+      <input type="text" id="zoekveld" placeholder="Zoek op naam of artiest...">
+      <select id="typeFilter">
+        <option value="">Alle types</option>
+        <option value="muurschildering">Muurschildering</option>
+        <option value="beeld">Standbeeld</option>
+      </select>
+      <select id="sorteer">
+        <option value="naam">Sorteer op naam</option>
+        <option value="jaartal">Sorteer op jaartal</option>
+      </select>
+      <div id="dataContainer"></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="voettekst">
+  <div class="voettekst-inhoud">
+    <p>© Kiran Jamil Chaud-Ry & Lina Benhanj | Project Dynamic Web |</p>
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="js/index.js"></script>
+<script src="js/login.js"></script>
+
+</body>
+</html>
