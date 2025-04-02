@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Login functionaliteit
+    // notatie :Login functionaliteit
     const loginForm = document.getElementById("loginForm");
+    const favorietenSectie = document.getElementById("favorietenSectie");
+    const favorietenGrid = document.getElementById("favorietenGrid");
   
     if (loginForm) {
       loginForm.addEventListener("submit", function (e) {
@@ -14,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
           if (email === "gebruiker@brussel.be" && password === "user123") {
             localStorage.setItem("isUser", "true");
             alert("✅ Welkom gebruiker!");
-            window.location.href = "index.html";
+            toonFavorieten();
           } else {
             alert("❌ Ongeldige gebruikersgegevens");
           }
@@ -33,9 +35,45 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
     }
+  
+    if (localStorage.getItem("isUser") === "true" && favorietenSectie) {
+      toonFavorieten();
+    }
+  
+    function toonFavorieten() {
+      if (loginForm) loginForm.style.display = "none";
+      if (favorietenSectie) favorietenSectie.style.display = "block";
+  
+      const favorieten = JSON.parse(localStorage.getItem("favorieten")) || [];
+      favorietenGrid.innerHTML = "";
+  
+      if (favorieten.length === 0) {
+        favorietenGrid.innerHTML = "<p>Je hebt nog geen favorieten opgeslagen.</p>";
+        return;
+      }
+  
+      favorieten.forEach((item, index) => {
+        const kaart = document.createElement("div");
+        kaart.className = "locatie-kaart";
+  
+        const afbeelding = item.afbeelding || "https://via.placeholder.com/400x200?text=Geen+afbeelding";
+  
+        kaart.innerHTML = `
+          <img src="${afbeelding}" alt="Afbeelding van ${item.titel}" class="locatie-afbeelding" />
+          <div class="locatie-inhoud">
+            <h2>${item.titel}</h2>
+            <p>${item.beschrijving || "Geen beschrijving."}</p>
+            <p><strong>📍</strong> ${item.adres || "Onbekend adres"}</p>
+            <button class="favoriet-btn actief" onclick="verwijderFavoriet(${index})">❤️ Verwijder</button>
+          </div>
+        `;
+  
+        favorietenGrid.appendChild(kaart);
+      });
+    }
   });
   
-  // Logout functies
+  // notatie :Logout functies
   function logoutUser() {
     localStorage.removeItem("isUser");
     alert("Je bent uitgelogd als gebruiker.");
@@ -50,4 +88,14 @@ document.addEventListener("DOMContentLoaded", () => {
   
   window.logoutUser = logoutUser;
   window.logoutAdmin = logoutAdmin;
+  
+  // notatie :Verwijderen vanuit favorieten
+  function verwijderFavoriet(index) {
+    const favorieten = JSON.parse(localStorage.getItem("favorieten")) || [];
+    favorieten.splice(index, 1);
+    localStorage.setItem("favorieten", JSON.stringify(favorieten));
+    location.reload();
+  }
+  
+  window.verwijderFavoriet = verwijderFavoriet;
   

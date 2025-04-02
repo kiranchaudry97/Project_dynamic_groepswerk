@@ -9,26 +9,28 @@
 </head>
 <body>
 
+<header>
+  <nav class="navigatiebalk">
+    <a href="index.html">
+      <img src="images/logo%20brussel%20parcours.png" alt="Logo BrusselsExplorer" class="logo" />
+    </a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="comicbook.html">Stripmuren</a></li>
+      <li><a href="locatie.html">Locatie</a></li>
+      <li><a href="about.html">Over</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="user_login.html" class="active">Login</a></li>
+    </ul>
+  </nav>
+</header>
 
-    <header>
-        <nav class="navigatiebalk">
-          <a href="index.html">
-            <img src="images/logo%20brussel%20parcours.png" alt="Logo BrusselsExplorer" class="logo" />
-          </a>
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="comicbook.html">Stripmuren</a></li>
-            <li><a href="locatie.html" class="active">Locatie</a></li>
-            <li><a href="about.html">Over</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="user_login.html">Login</a></li>
-          </ul>
-        </nav>
-  <header class="pagina-header">
-    <h1>Gebruiker Login</h1>
-  </header>
+<header class="pagina-header">
+  <h1>Gebruiker Login</h1>
+</header>
 
-  <main class="login-container">
+<main>
+  <section class="login-container" id="loginSectie">
     <form class="login-form" id="userLoginForm">
       <label for="email">📧 E-mailadres</label>
       <input type="email" id="email" required placeholder="gebruiker@brussel.be" />
@@ -39,17 +41,23 @@
       <button type="submit">Inloggen als gebruiker</button>
       <p class="form-extra">Geen account? <a href="#">Registreer hier</a></p>
     </form>
-  </main>
+  </section>
 
-  <footer class="voettekst">
-    <div class="voettekst-inhoud">
-      <p>© Kiran Jamil Chaud-Ry & Lina Benhanj | Project Dynamic Web |</p>
-    </div>
-  </footer>
+  <!-- Favorieten Overzicht -->
+  <section class="locatie-container" id="favorietenSectie" style="display:none;">
+    <h2>❤️ Mijn Favorieten</h2>
+    <p>Bekijk hier jouw gelikete locaties.</p>
+    <div id="favorietenGrid" class="locatie-grid"></div>
+    <button onclick="logoutUser()" style="margin-top:20px;">Uitloggen</button>
+  </section>
+</main>
 
-  <!-- notatie : script toevoegen -->
-<script src="js/index.js"></script>
+<footer class="voettekst">
+  <div class="voettekst-inhoud">
+    <p>© Kiran Jamil Chaud-Ry & Lina Benhanj | Project Dynamic Web |</p>
+  </div>
+</footer>
+
 <script src="js/log.js"></script>
-
 </body>
 </html>

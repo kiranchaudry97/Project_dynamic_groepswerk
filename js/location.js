@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-
     /*locatie lijst pagina */
     const locatieContainer = document.getElementById("locaties");
     const zoekveld = document.getElementById("zoekveld");
@@ -8,12 +7,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const jaarFilter = document.getElementById("jaarFilter");
     const toggleBtn = document.getElementById("toggleView");
     const mapElement = document.getElementById("map");
-    
+  
     let alleLocaties = [];
     let kaart;
     let markers = [];
     let lijstWeergave = true;
-    
+  
     if (locatieContainer) {
       async function fetchLocaties() {
         try {
@@ -27,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
           locatieContainer.innerHTML = `<p>❌ Fout bij laden van data.</p>`;
         }
       }
-    
+  
       function toonLocaties(data) {
         locatieContainer.innerHTML = "";
         data.forEach((record, index) => {
@@ -36,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const adres = record.adresse || "Geen adres vermeld.";
           const auteur = record.auteur || "Onbekend";
           const realisatie = record.realisation || "?";
-    
+  
           let afbeelding = "https://via.placeholder.com/400x200?text=Geen+afbeelding";
           if (record.images && Array.isArray(record.images)) {
             const eersteAfbeelding = record.images.find(img => img.url);
@@ -44,10 +43,10 @@ document.addEventListener('DOMContentLoaded', () => {
               afbeelding = eersteAfbeelding.url;
             }
           }
-    
+  
           const kaart = document.createElement("div");
           kaart.className = "locatie-kaart";
-    
+  
           kaart.innerHTML = `
             <img src="${afbeelding}" alt="Afbeelding van ${titel}" class="locatie-afbeelding">
             <div class="locatie-inhoud">
@@ -57,18 +56,19 @@ document.addEventListener('DOMContentLoaded', () => {
               <p><strong>📅 Jaar:</strong> ${realisatie}</p>
               <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(adres)}" 
                  target="_blank" class="kaart-link">🔗 Open in Google Maps</a>
+              <button class="favoriet-btn" onclick="voegToeAanFavorieten('${titel}', \`${beschrijving}\`, '${adres}', '${afbeelding}')">❤️ Voeg toe</button>
             </div>
           `;
-    
+  
           kaart.addEventListener("click", () => {
             sessionStorage.setItem("detailLocatie", JSON.stringify(record));
             window.location.href = "locatie-detail.html";
           });
-    
+  
           locatieContainer.appendChild(kaart);
         });
       }
-    
+  
       function vulAuteurFilter(data) {
         const auteurs = [...new Set(data.map(item => item.auteur).filter(Boolean))].sort();
         auteurs.forEach(auteur => {
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
           auteurFilter.appendChild(optie);
         });
       }
-    
+  
       function vulJaarFilter(data) {
         const jaren = [...new Set(data.map(item => item.realisation).filter(Boolean))].sort((a, b) => a - b);
         jaren.forEach(jaar => {
@@ -88,12 +88,12 @@ document.addEventListener('DOMContentLoaded', () => {
           jaarFilter.appendChild(optie);
         });
       }
-    
+  
       function filterLocaties() {
         const zoekterm = zoekveld.value.toLowerCase();
         const geselecteerdeAuteur = auteurFilter.value;
         const geselecteerdJaar = jaarFilter.value;
-    
+  
         let gefilterd = alleLocaties.filter(r => {
           const matchTitel = r.titre?.toLowerCase().includes(zoekterm);
           const matchBeschrijving = r.description?.toLowerCase().includes(zoekterm);
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const matchJaar = geselecteerdJaar === "" || r.realisation == geselecteerdJaar;
           return (matchTitel || matchBeschrijving) && matchAuteur && matchJaar;
         });
-    
+  
         if (sorteerSelect.value === "nieuwste") {
           gefilterd.sort((a, b) => (b.realisation || 0) - (a.realisation || 0));
         } else if (sorteerSelect.value === "oudste") {
@@ -109,26 +109,26 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (sorteerSelect.value === "az") {
           gefilterd.sort((a, b) => (a.titre || "").localeCompare(b.titre || ""));
         }
-    
+  
         toonLocaties(gefilterd);
         if (!lijstWeergave) updateMap(gefilterd);
       }
-    
+  
       function initMap() {
         kaart = L.map('map').setView([50.8503, 4.3517], 13);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
           attribution: '&copy; OpenStreetMap bijdragende auteurs'
         }).addTo(kaart);
       }
-    
+  
       function updateMap(data) {
         markers.forEach(m => kaart.removeLayer(m));
         markers = [];
-    
+  
         data.forEach(record => {
           const coords = record.geo_point_2d;
           if (!coords) return;
-    
+  
           let afbeelding = "";
           if (record.images && Array.isArray(record.images)) {
             const eersteAfbeelding = record.images.find(img => img.url);
@@ -136,20 +136,20 @@ document.addEventListener('DOMContentLoaded', () => {
               afbeelding = `<br><img src='${eersteAfbeelding.url}' style='width:100px; margin-top:5px; border-radius:8px;'>`;
             }
           }
-    
+  
           const marker = L.marker([coords.lat, coords.lon])
             .addTo(kaart)
             .bindPopup(`<strong>${record.titre}</strong><br>${record.adresse || "Geen adres"}${afbeelding}`);
           markers.push(marker);
         });
       }
-    
+  
       toggleBtn.addEventListener("click", () => {
         lijstWeergave = !lijstWeergave;
         locatieContainer.style.display = lijstWeergave ? "grid" : "none";
         mapElement.style.display = lijstWeergave ? "none" : "block";
         toggleBtn.textContent = lijstWeergave ? "Wissel naar kaartweergave" : "Wissel naar lijstweergave";
-    
+  
         if (!kaart && !lijstWeergave) {
           initMap();
           updateMap(alleLocaties);
@@ -158,14 +158,13 @@ document.addEventListener('DOMContentLoaded', () => {
           updateMap(alleLocaties);
         }
       });
-    
+  
       zoekveld.addEventListener("input", filterLocaties);
       auteurFilter.addEventListener("change", filterLocaties);
       sorteerSelect.addEventListener("change", filterLocaties);
       jaarFilter.addEventListener("change", filterLocaties);
-    
+  
       fetchLocaties();
     }
-    
-    });
-    
+  });
+  
