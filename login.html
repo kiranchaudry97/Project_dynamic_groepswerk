@@ -7,21 +7,21 @@
   <link rel="stylesheet" href="css/styl.css" />
 </head>
 <body>
-    <nav class="navigatiebalk">
-        <a href="index.html">
-          <img src="images/logo%20brussel%20parcours.png" alt="Logo BrusselsExplorer" class="logo">
-        </a>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="strip_muren.html">Stripmuren</a></li>
-          <li><a href="locatie.html" class="active">Locatie</a></li>
-          <li><a href="about.html">Over</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="login.html">Login</a></li>
-        </ul>
-      </nav>
-      
-  <div class="login-container">
+  <nav class="navigatiebalk">
+    <a href="index.html">
+      <img src="images/logo%20brussel%20parcours.png" alt="Logo BrusselsExplorer" class="logo" />
+    </a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="strip_muren.html">Stripmuren</a></li>
+      <li><a href="locatie.html" class="active">Locatie</a></li>
+      <li><a href="about.html">Over</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="login.html">Login</a></li>
+    </ul>
+  </nav>
+
+  <div class="login-container" id="loginSection">
     <h1>🔐 Login</h1>
 
     <form id="loginForm" class="login-form">
@@ -43,10 +43,16 @@
 
     <div class="form-extra">
       <p>🔑 Gebruik/admin gegevens:<br>
-      gebruiker@brussel.be / user123<br>
-      admin@brussel.be / admin123</p>
+        gebruiker@brussel.be / user123<br>
+        admin@brussel.be / admin123</p>
     </div>
   </div>
+
+  <!-- notatie : Favorieten overzicht -->
+  <section id="favorietenSectie" style="display:none; padding: 30px;">
+    <h2>❤️ Jouw Favorieten</h2>
+    <div id="favorietenGrid" class="locatie-grid"></div>
+  </section>
 
   <script src="js/log.js"></script>
 </body>

@@ -36,10 +36,12 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
   
+    // notatie : automatisch tonen van favorieten bij actieve gebruiker
     if (localStorage.getItem("isUser") === "true" && favorietenSectie) {
       toonFavorieten();
     }
   
+    // notatie :Favorieten overzicht tonen
     function toonFavorieten() {
       if (loginForm) loginForm.style.display = "none";
       if (favorietenSectie) favorietenSectie.style.display = "block";
