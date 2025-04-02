@@ -1,26 +1,17 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Initialiseer de kaart één keer
-    var map = L.map('map').setView([50.8467, 4.3499], 13); // Centrum van Brussel
+    const mapElement = document.getElementById('map');
+    if (!mapElement) {
+      console.warn("Geen #map element gevonden.");
+      return;
+    }
   
-    // Voeg OpenStreetMap tiles toe
+    const map = L.map('map').setView([50.8467, 4.3499], 13);
+  
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      attribution: '&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors'
     }).addTo(map);
   
-    // Voeg de eerste set markers toe
-    var markers = [
-      { lat: 50.8503, lon: 4.3517, title: "Locatie 1", description: "Beschrijving 1" },
-      { lat: 50.8467, lon: 4.3499, title: "Locatie 2", description: "Beschrijving 2" }
-    ];
-  
-    markers.forEach(function (marker) {
-      L.marker([marker.lat, marker.lon])
-        .addTo(map)
-        .bindPopup("<b>" + marker.title + "</b><br>" + marker.description);
-    });
-  
-    // Voeg de stripmuur-locaties toe
-    var locaties = [
+    const locaties = [
       { titel: "Jojo", lat: 50.83754388868448, lon: 4.344524882874058, adres: "Rue Pieremans 43, 1000 Brussel" },
       { titel: "De dromen van Nick", lat: 50.84886043404643, lon: 4.340997437339567, adres: "Rue des Fabriques 37, 1000 Brussel" },
       { titel: "Suske en Wiske", lat: 50.854687478802575, lon: 4.352896797603347, adres: "Rue de Laeken 116, 1000 Brussel" },
@@ -39,4 +30,6 @@ document.addEventListener('DOMContentLoaded', function () {
         .bindPopup(`<b>${locatie.titel}</b><br>${locatie.adres}`);
     });
   });
+  
+  
   

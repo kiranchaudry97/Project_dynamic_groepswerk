@@ -878,3 +878,227 @@ body.dark .voettekst {
 
 
 /*admin login*/
+/* ===== ADMIN DASHBOARD STYLING (AANSLUITEND OP DESIGN) ===== */
+.admin-dashboard {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+}
+
+.admin-dashboard h1,
+.admin-dashboard h2 {
+  text-align: center;
+  color: #C4501B;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* Admin formulieren */
+.add-location form,
+.user-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 20px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+  margin-bottom: 30px;
+}
+
+.add-location label {
+  font-weight: 500;
+  color: #333;
+}
+
+.add-location input,
+.add-location textarea {
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-family: "Outfit", sans-serif;
+}
+
+.add-location textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.add-location button {
+  background-color: #C4501B;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 10px 20px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-location button:hover {
+  background-color: #a63d15;
+}
+
+/* Tabellen voor admin */
+.admin-dashboard table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.admin-dashboard th,
+.admin-dashboard td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  font-size: 0.95rem;
+}
+
+.admin-dashboard th {
+  background-color: #dedcff;
+  color: #1c1c3a;
+  font-weight: 600;
+}
+
+.admin-dashboard td button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: white;
+  background-color: #ff5555;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.admin-dashboard td button:hover {
+  background-color: #d13c3c;
+}
+
+/* Dark mode */
+body.dark .admin-dashboard {
+  background-color: #1f1f1f;
+  color: white;
+}
+
+body.dark .admin-dashboard table {
+  background-color: #2a2a2a;
+}
+
+body.dark .admin-dashboard th {
+  background-color: #333366;
+  color: white;
+}
+
+body.dark .admin-dashboard td {
+  color: white;
+}
+
+body.dark .add-location form {
+  background-color: #2e2e2e;
+}
+
+body.dark .add-location input,
+body.dark .add-location textarea {
+  background-color: #1e1e1e;
+  color: white;
+  border: 1px solid #555;
+}
+
+
+/* === MAP CONTAINER (index.html) === */
+.map-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  text-align: center;
+  margin: 20px;
+}
+
+.map-container h2 {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.map-container h3 {
+  font-size: 16px;
+  color: gray;
+  margin-bottom: 15px;
+}
+
+#map {
+  width: 80%;
+  height: 400px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* === TOP 3 POPULAIRE LOCATIES === */
+.top-3-locaties {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.top-3-locaties h2 {
+  color: #C4501B;
+  margin-bottom: 30px;
+}
+
+.top-3-locaties .locatie {
+  display: inline-block;
+  width: 300px;
+  margin: 10px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+}
+
+.top-3-locaties img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.top-3-locaties h3 {
+  margin: 10px 0 5px;
+}
+
+.top-3-locaties p {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.top-3-locaties button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #C4501B;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.top-3-locaties button:hover {
+  background-color: #a63d15;
+}
+#map {
+  width: 80%;
+  height: 400px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
