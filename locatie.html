@@ -69,6 +69,12 @@
   <div id="map"></div>
 </section>
 
+kaart.addEventListener("click", () => {
+    sessionStorage.setItem("detailLocatie", JSON.stringify(record));
+    window.location.href = "locatie-detail.html";
+  });
+  
+
 <!-- notatie : scripts -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="js/location.js"></script>

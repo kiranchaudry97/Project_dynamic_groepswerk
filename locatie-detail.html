@@ -37,6 +37,57 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="js/location.js"></script>
 <script src="js/log.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const detailDiv = document.getElementById("locatie-detail");
+      const mapDiv = document.getElementById("map");
+    
+      const data = JSON.parse(sessionStorage.getItem("detailLocatie"));
+    
+      if (!data) {
+        detailDiv.innerHTML = "<p>Geen gegevens gevonden. Keer terug naar <a href='locatie.html'>de lijst</a>.</p>";
+        return;
+      }
+    
+      const afbeelding = data.images?.[0]?.url || "https://via.placeholder.com/800x300?text=Geen+afbeelding";
+      const titel = data.titre || "Onbekende titel";
+      const auteur = data.auteur || "Onbekend";
+      const beschrijving = data.description || "Geen beschrijving beschikbaar.";
+      const adres = data.adresse || "Onbekend adres";
+      const jaar = data.realisation || "?";
+    
+      const googleMapsLink = data.geo_point_2d
+        ? `https://www.google.com/maps?q=${data.geo_point_2d.lat},${data.geo_point_2d.lon}`
+        : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(adres)}`;
+    
+      detailDiv.innerHTML = `
+        <img src="${afbeelding}" alt="Afbeelding van ${titel}" class="detail-afbeelding" />
+        <h1>${titel}</h1>
+        <p><strong>🎨 Kunst:</strong> ${auteur}</p>
+        <p><strong>📍 Locatie:</strong> ${adres}</p>
+        <p><strong>📅 Jaar:</strong> ${jaar}</p>
+        <p>${beschrijving}</p>
+        <a href="${googleMapsLink}" target="_blank" class="kaart-link">🔗 Open in Google Maps</a>
+      `;
+    
+      // Kaart tonen
+      if (data.geo_point_2d) {
+        const map = L.map('map').setView([data.geo_point_2d.lat, data.geo_point_2d.lon], 15);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; OpenStreetMap'
+        }).addTo(map);
+    
+        L.marker([data.geo_point_2d.lat, data.geo_point_2d.lon])
+          .addTo(map)
+          .bindPopup(titel)
+          .openPopup();
+      } else {
+        mapDiv.innerHTML = "<p>📍 Geen locatiegegevens beschikbaar voor deze locatie.</p>";
+      }
+    });
+    </script>
+    
+
 
 </body>
 </html>
