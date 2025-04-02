@@ -112,7 +112,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
           ];
   
-          alleLocaties = [...extraLocaties, ...alleLocaties];
+          alleLocaties = extraLocaties; 
+
   
           toonLocaties(alleLocaties);
           vulAuteurFilter(alleLocaties);
@@ -273,7 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
     favorieten.push({ titel, beschrijving, adres, afbeelding });
     localStorage.setItem("favorieten", JSON.stringify(favorieten));
-    alert("✅ Toegevoegd aan favorieten!");
+    alert("Toegevoegd aan favorieten!");
   
     if (localStorage.getItem("isUser") === "true") {
       window.location.href = "favorieten.html";
@@ -281,5 +282,43 @@ document.addEventListener('DOMContentLoaded', () => {
       alert("🔐 Log eerst in om je favorieten te bekijken.");
     }
   }
+
+  /*overzicht van locatie */
   window.voegToeAanFavorieten = voegToeAanFavorieten;
+  document.addEventListener("DOMContentLoaded", () => {
+    const detailDiv = document.getElementById("locatie-detail");
+    const mapDiv = document.getElementById("map");
+  
+    const data = JSON.parse(sessionStorage.getItem("detailLocatie"));
+  
+    if (!data) {
+      detailDiv.innerHTML = "<p>Geen gegevens gevonden. Keer terug naar <a href='locatie.html'>de lijst</a>.</p>";
+      return;
+    }
+  
+    const afbeelding = data.images?.[0]?.url || "https://via.placeholder.com/800x300?text=Geen+afbeelding";
+    const titel = data.titre || data.titel || "Onbekende titel";
+    const beschrijving = data.description || "Geen beschrijving beschikbaar.";
+  
+    detailDiv.innerHTML = `
+      <img src="${afbeelding}" alt="Afbeelding van ${titel}" class="detail-afbeelding" />
+      <h1>${titel}</h1>
+      <p>${beschrijving}</p>
+    `;
+  
+    if (data.geo_point_2d) {
+      const map = L.map('map').setView([data.geo_point_2d.lat, data.geo_point_2d.lon], 15);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap'
+      }).addTo(map);
+  
+      L.marker([data.geo_point_2d.lat, data.geo_point_2d.lon])
+        .addTo(map)
+        .bindPopup(titel)
+        .openPopup();
+    } else {
+      mapDiv.innerHTML = "<p>📍 Geen locatiegegevens beschikbaar voor deze locatie.</p>";
+    }
+  });
+  
   

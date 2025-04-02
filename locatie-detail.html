@@ -10,8 +10,7 @@
 </head>
 <body>
 
-<!-- notatie : navigatie balke en de andere pagina's, image logo toevogen-->
-
+<!-- notatie : Navigatiebalk -->
 <nav class="navigatiebalk">
   <a href="index.html">
     <img src="images/logo%20brussel%20parcours.png" alt="Logo BrusselsExplorer" class="logo" />
@@ -24,69 +23,84 @@
     <li><a href="login.html">Login</a></li>
   </ul>
 </nav>
-<!-- notatie : container aanmaken om naar terug te keren naar overzicht-->
 
+<!-- notatie : Detail Container -->
 <section class="detail-container">
-  <p><a href="locatie.html">← Terug naar overzicht</a></p>
   <div id="locatie-detail"></div>
+  <div id="kunst-informatie"></div>
   <div id="map"></div>
+  <p class="overzichtp"><a href="locatie.html">← Terug naar overzicht</a></p>
+
 </section>
-<!-- notatie : het script uitroepen-->
 
+<!--notatie : Scripts -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="js/location.js"></script>
-<script src="js/log.js"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const detailDiv = document.getElementById("locatie-detail");
-      const mapDiv = document.getElementById("map");
-    
-      const data = JSON.parse(sessionStorage.getItem("detailLocatie"));
-    
-      if (!data) {
-        detailDiv.innerHTML = "<p>Geen gegevens gevonden. Keer terug naar <a href='locatie.html'>de lijst</a>.</p>";
-        return;
-      }
-    
-      const afbeelding = data.images?.[0]?.url || "https://via.placeholder.com/800x300?text=Geen+afbeelding";
-      const titel = data.titre || "Onbekende titel";
-      const auteur = data.auteur || "Onbekend";
-      const beschrijving = data.description || "Geen beschrijving beschikbaar.";
-      const adres = data.adresse || "Onbekend adres";
-      const jaar = data.realisation || "?";
-    
-      const googleMapsLink = data.geo_point_2d
-        ? `https://www.google.com/maps?q=${data.geo_point_2d.lat},${data.geo_point_2d.lon}`
-        : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(adres)}`;
-    
-      detailDiv.innerHTML = `
-        <img src="${afbeelding}" alt="Afbeelding van ${titel}" class="detail-afbeelding" />
-        <h1>${titel}</h1>
-        <p><strong>🎨 Kunst:</strong> ${auteur}</p>
-        <p><strong>📍 Locatie:</strong> ${adres}</p>
-        <p><strong>📅 Jaar:</strong> ${jaar}</p>
-        <p>${beschrijving}</p>
-        <a href="${googleMapsLink}" target="_blank" class="kaart-link">🔗 Open in Google Maps</a>
-      `;
-    
-      // Kaart tonen
-      if (data.geo_point_2d) {
-        const map = L.map('map').setView([data.geo_point_2d.lat, data.geo_point_2d.lon], 15);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          attribution: '&copy; OpenStreetMap'
-        }).addTo(map);
-    
-        L.marker([data.geo_point_2d.lat, data.geo_point_2d.lon])
-          .addTo(map)
-          .bindPopup(titel)
-          .openPopup();
-      } else {
-        mapDiv.innerHTML = "<p>📍 Geen locatiegegevens beschikbaar voor deze locatie.</p>";
-      }
-    });
-    </script>
-    
+  document.addEventListener("DOMContentLoaded", () => {
+    const detailDiv = document.getElementById("locatie-detail");
+    const beschrijvingDiv = document.getElementById("kunst-informatie");
+    const mapDiv = document.getElementById("map");
 
+    const data = JSON.parse(sessionStorage.getItem("detailLocatie"));
+
+    if (!data) {
+      detailDiv.innerHTML = "<p>Geen gegevens gevonden. Keer terug naar <a href='locatie.html'>de lijst</a>.</p>";
+      return;
+    }
+
+    const customDescriptions = {
+      "Asterix en Obelix": `Asterix en Obelix reizen door Europa in een Romeins Gallië vol anachronismen. Deze strip is een speelse mix van fictie en geschiedenis, gecreëerd door Uderzo & Goscinny.`,
+      "Billy the cat": `Billy is een jongen die wordt herboren als een kat na een ongeluk. Hij leert empathie en overleven in de stad dankzij andere dieren zoals meneer Hubert en Jumbo.`,
+      "Blake en Mortimer": `In 'Het Gele Teken' jagen Blake & Mortimer op een mysterieuze crimineel in Londen. De muurschildering is een eerbetoon aan Edgar P. Jacobs’ meesterwerk.`,
+      "De Smurfen": `De Smurfen zijn kleine blauwe wezentjes die in een bos wonen. Hun verhalen bevatten humor, waarden en magie – een iconisch werk van Peyo.`,
+      "Jojo": `Jojo toont het leven van een kind in een moderne maatschappij. Onderwerpen als pesten, schoolstress en familie worden op tedere wijze behandeld.`,
+      "De dromen van Nick": `Deze muurschildering is een knipoog naar 'Little Nemo'. Nick beleeft nachtelijke avonturen die surreëel en poëtisch zijn, met invloeden uit de psychoanalyse.`,
+      "Suske en Wiske": `Deze Belgische klassieker combineert avontuur, fantasie en moraal. De figuren beleven tijdreizen, sprookjes en actie in een herkenbare Vlaamse context.`,
+      "Yoko Tsuno": `Yoko Tsuno is een vrouwelijke ingenieur en avonturier die wetenschap, ruimte en empathie samenbrengt. Haar verhalen draaien om vriendschap en technologie.`,
+      "De Schorpioen": `Deze reeks speelt zich af in het barokke Rome en volgt een mysterieuze held in een wereld van religieuze en politieke intriges, vol actie en drama.`,
+      "Het kleine vest": `Deze muurschildering verwijst naar de 'gele hesjes'-beweging en staat symbool voor protest, kwetsbaarheid en zichtbaarheid in de openbare ruimte.`
+    };
+
+    const afbeelding = data.images?.[0]?.url || "https://via.placeholder.com/800x300?text=Geen+afbeelding";
+    const titel = data.titre || "Onbekende titel";
+    const auteur = data.auteur || "Onbekend kunstenaar";
+    const adres = data.adresse || "Onbekend adres";
+
+    const beschrijving = customDescriptions[titel] || "Geen aanvullende informatie beschikbaar voor dit kunstwerk.";
+
+    const googleMapsLink = data.geo_point_2d
+      ? `https://www.google.com/maps?q=${data.geo_point_2d.lat},${data.geo_point_2d.lon}`
+      : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(adres)}`;
+
+    detailDiv.innerHTML = `
+      <img src="${afbeelding}" alt="Afbeelding van ${titel}" class="detail-afbeelding" />
+      <h1>${titel}</h1>
+      <p><strong>🎨 Kunst:</strong> ${auteur}</p>
+      <a href="${googleMapsLink}" target="_blank" class="kaart-link">🔗 Open in Google Maps</a>
+    `;
+
+    beschrijvingDiv.innerHTML = `
+      <div class="kunst-beschrijving">
+        <h2>Beschrijving van het kunstwerk</h2>
+        <p>${beschrijving}</p>
+      </div>
+    `;
+
+    if (data.geo_point_2d) {
+      const map = L.map('map').setView([data.geo_point_2d.lat, data.geo_point_2d.lon], 15);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap'
+      }).addTo(map);
+
+      L.marker([data.geo_point_2d.lat, data.geo_point_2d.lon])
+        .addTo(map)
+        .bindPopup(titel)
+        .openPopup();
+    } else {
+      mapDiv.innerHTML = "<p>📍 Geen locatiegegevens beschikbaar voor deze locatie.</p>";
+    }
+  });
+</script>
 
 </body>
 </html>

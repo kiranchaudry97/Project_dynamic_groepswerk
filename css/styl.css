@@ -248,57 +248,6 @@ body.dark .voettekst {
 }
 
 
-/*Strip muren pagina ---> strip_muren.html*/
-/*
-.stripmuren-header {
-  text-align: center;
-  padding: 40px 20px 20px;
-  background-color: #dedcff;
-  font-family: "Outfit", sans-serif;
-}
-
-.stripmuren-header h1 {
-  font-size: 2.5rem;
-  color: #1c1c3a;
-  margin: 0;
-}
-
-.stripmuren-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 40px 20px;
-  font-family: "Outfit", sans-serif;
-}
-
-.stripmuren-gegevens {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.stripmuren-gegevens h2 {
-  font-size: 1.5rem;
-  margin-top: 30px;
-  color: #C4501B;
-  font-weight: 600;
-}
-
-.stripmuren-gegevens p {
-  font-size: 1.1rem;
-  margin-bottom: 15px;
-  max-width: 600px;
-}
-*/
-
-
-
-
-
-
-
-
-
 
 /*locatie pagina met container en grid -->locatie.html */
 
@@ -354,6 +303,27 @@ body.dark .voettekst {
 }
 
 /* Inhoud van locatie container en grid van de overzicht*/
+
+.overzichtp {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.overzichtp a {
+  color: #005bb5;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.overzichtp a:hover {
+  color: #a63d15;
+  text-decoration: underline;
+}
+
+
 
 .locatie-container {
   padding: 40px 20px;
@@ -532,6 +502,22 @@ body.dark .voettekst {
   border-radius: 12px;
   margin-top: 20px;
 }
+
+/*overzicht */
+.kunst-beschrijving {
+  margin-top: 30px;
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.kunst-beschrijving h2 {
+  color: #C4501B;
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
 
 
 /*over ons ---> about.html*/
