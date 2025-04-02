@@ -15,6 +15,7 @@
       </a>
       <ul>
         <li><a href="index.html">Home</a></li>
+        <li><a href="strip_muren.html">Stripmuren</a></li>
         <li><a href="locatie.html" class="active">Locatie</a></li>
         <li><a href="about.html">Over</a></li>
         <li><a href="contact.html">Contact</a></li>
@@ -23,43 +24,54 @@
     </nav>
   </header>
   
-
   <header class="pagina-header">
     <h1>Neem contact met ons op</h1>
   </header>
 
   <main class="contact-container">
+    <section class="contact-formulier">
+      <h2>📩 Stuur ons een bericht</h2>
+      <form id="contactForm">
+        <label for="voornaam">Voornaam:</label>
+        <input type="text" id="voornaam" name="voornaam" required>
+        
+        <label for="achternaam">Achternaam:</label>
+        <input type="text" id="achternaam" name="achternaam" required>
+        
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="telefoon">Telefoonnummer:</label>
+        <input type="tel" id="telefoon" name="telefoon" required>
+        
+        <label for="opmerking">Opmerking:</label>
+        <textarea id="opmerking" name="opmerking" rows="5" required></textarea>
+        
+        <button type="submit">Verzenden</button>
+      </form>
+    </section>
+    
     <section class="contact-gegevens">
       <h2>📧 E-mail</h2>
       <p><a href="mailto:info@brusselsexplorer.be">info@brusselsexplorer.be</a></p>
-
       <h2>📞 Telefoon</h2>
       <p><a href="tel:+3221234567">+32 2 123 45 67</a></p>
-
       <h2>📍 Adres</h2>
       <p>Rue des Comics 1, 1000 Brussel, België</p>
     </section>
-
-    <h2 >🗺️ Locatie op kaart</h2>
-<div class="google-map">
-  <iframe 
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2518.3146349072423!2d4.348893315745481!3d50.8465573795301!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c3c48050dcf41d%3A0x8f2e6fdafc15cb77!2sRue%20des%20Comics%2C%201000%20Bruxelles%2C%20Belgium!5e0!3m2!1sen!2sbe!4v1711993700000!5m2!1sen!2sbe" 
-    width="100%" 
-    height="300" 
-    style="border:0; border-radius: 12px;" 
-    allowfullscreen="" 
-    loading="lazy" 
-    referrerpolicy="no-referrer-when-downgrade">
-  </iframe>
-
-</div>
-
+    
+    <h2>🗺 Locatie op kaart</h2>
+    <div class="google-map">
+      <iframe src="https://www.google.com/maps/embed?..." width="100%" height="300" style="border:0; border-radius: 12px;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
   </main>
-
+  
   <footer class="voettekst">
     <div class="voettekst-inhoud">
       <p>© Kiran Jamil Chaud-Ry & Lina Benhanj | Project Dynamic Web |</p>
     </div>
   </footer>
+  
+  <script src="js/form_contact.js"></script>
 </body>
 </html>
