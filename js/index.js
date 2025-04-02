@@ -93,22 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-// Logout functies
-function logoutUser() {
-  localStorage.removeItem("isUser");
-  alert("Je bent uitgelogd als gebruiker.");
-  window.location.href = "user_login.html";
-}
 
-function logoutAdmin() {
-  localStorage.removeItem("isAdmin");
-  alert("Je bent uitgelogd als admin.");
-  window.location.href = "admin_login.html";
-}
-
-// Maak de logout functies beschikbaar
-window.logoutUser = logoutUser;
-window.logoutAdmin = logoutAdmin;
 
 // Toevoegen aan favorieten vanuit andere pagina's
 function voegToeAanFavorieten(titel, beschrijving, adres, afbeelding) {
