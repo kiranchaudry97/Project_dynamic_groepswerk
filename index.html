@@ -6,9 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BrusselsExplorer</title>
   <link rel="stylesheet" href="css/styl.css">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  
+  <script src="js/map.js" defer></script>
 </head>
 
 <body>
@@ -39,42 +38,49 @@
 <section class="banner">
   <img src="images/stripart.jpg" alt="Bannerafbeelding">
   <div class="banner-tekst">
-    <h1> Welkom op BrusselsExplorer !</h1>
+    <h1>Welkom op BrusselsExplorer!</h1>
     <h3>Bekijk onze interessante comic parkours in Brussel.<br>
         Ontdek de kleurrijke stripmuurschilderingen die onze stad tot leven brengen.</h3>
   </div>
 </section>
 
-
-
 <section class="top-3-locaties">
   <h2>Top 3 Populaire Locaties</h2>
   <div class="locatie" id="locatie-1">
-      <img src="https://www.parcoursbd.brussels/wp-content/uploads/2021/09/25_petit_jojo_rue_pieremans_04_vb-685x1024.jpg" alt="Jojo" />
-      <h3>Jojo</h3>
-      <p>Rue Pieremans 43, 1000 Brussel</p>
-      <button onclick="window.location.href='jojo_info.html'">Meer info</button>
+    <img src="https://www.parcoursbd.brussels/wp-content/uploads/2021/09/25_petit_jojo_rue_pieremans_04_vb-685x1024.jpg" alt="Jojo" />
+    <h3>Jojo</h3>
+    <p>Rue Pieremans 43, 1000 Brussel</p>
+    <button onclick="window.location.href='jojo_info.html'">Meer info</button>
   </div>
   <div class="locatie" id="locatie-2">
-      <img src="https://www.parcoursbd.brussels/wp-content/uploads/2021/09/12_reves_nic_rue_fabriques_01_vb-768x514.jpg" alt="De Dromen van Nick" />
-      <h3>De dromen van Nick</h3>
-      <p>Rue des Fabriques 37, 1000 Brussel</p>
-      <button onclick="window.location.href='dromen_van_nick_info.html'">Meer info</button>
+    <img src="https://www.parcoursbd.brussels/wp-content/uploads/2021/09/12_reves_nic_rue_fabriques_01_vb-768x514.jpg" alt="De Dromen van Nick" />
+    <h3>De dromen van Nick</h3>
+    <p>Rue des Fabriques 37, 1000 Brussel</p>
+    <button onclick="window.location.href='dromen_van_nick_info.html'">Meer info</button>
   </div>
   <div class="locatie" id="locatie-3">
-      <img src="https://www.parcoursbd.brussels/wp-content/uploads/2021/09/05_bob_bobette_rue_laeken_01_vb-685x1024.jpg" alt="Suske en Wiske" />
-      <h3>Suske en Wiske</h3>
-      <p>Rue de Laeken 116, 1000 Brussel</p>
-      <button onclick="window.location.href='suske_en_wiske_info.html'">Meer info</button>
+    <img src="https://www.parcoursbd.brussels/wp-content/uploads/2021/09/05_bob_bobette_rue_laeken_01_vb-685x1024.jpg" alt="Suske en Wiske" />
+    <h3>Suske en Wiske</h3>
+    <p>Rue de Laeken 116, 1000 Brussel</p>
+    <button onclick="window.location.href='suske_en_wiske_info.html'">Meer info</button>
   </div>
 </section>
 
 <section class="map-container">
   <h2>📍 Onze Locaties</h2>
   <h3>Bekijk hier al onze locaties op de kaart en ontdek de beste stripmuren in Brussel!</h3>
-  <div id="map"></div>
+
+  <div class="map-embed-wrapper">
+    <iframe
+      src="https://bruxellesdata.opendatasoft.com/explore/embed/dataset/bruxelles_parcours_bd/map/?disjunctive.dessinateur&disjunctive.commune_gemeente&disjunctive.maison_d_edition&disjunctive.realisateur&location=12,50.86579,4.37903&basemap=jawg.sunny"
+      class="map-iframe"
+      frameborder="0"
+      allowfullscreen
+    ></iframe>
+  </div>
 </section>
 
+</section>
 
 <footer class="voettekst">
   <div class="voettekst-inhoud">
