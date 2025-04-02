@@ -45,5 +45,23 @@ ocument.addEventListener("DOMContentLoaded", function () {
       localStorage.setItem("favorieten", JSON.stringify(favorieten));
       window.location.reload();  
     }
+
+const locaties = JSON.parse(localStorage.getItem("customLocaties")) || [];
+locaties.push({
+  naam: locatieName, 
+  beschrijving: locatieDescription,
+  afbeelding: "https://via.placeholder.com/400x200", // Of via input upload
+  datum: new Date().toISOString()
+});
+localStorage.setItem("customLocaties", JSON.stringify(locaties));
+
+function verwijderLocatie(index) {
+    const locaties = JSON.parse(localStorage.getItem("customLocaties")) || [];
+    locaties.splice(index, 1);
+    localStorage.setItem("customLocaties", JSON.stringify(locaties));
+    location.reload();
+  }
+  
+
   
   });

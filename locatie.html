@@ -21,24 +21,37 @@
             <li><a href="login.html">Login</a></li>
           </ul>
         </nav>
-      </header>
+    </header>
 
-<!-- Filter en zoekfunctionaliteit -->
-<div class="filters">
-  <input type="text" id="zoekveld" placeholder="Zoek op titel of beschrijving..." />
-  <select id="auteurFilter"><option value="">Alle kunstenaars</option></select>
-  <select id="jaarFilter"><option value="">Alle jaren</option></select>
-  <select id="sorteerJaar">
-    <option value="">Sorteer op...</option>
-    <option value="nieuwste">Nieuwste eerst</option>
-    <option value="oudste">Oudste eerst</option>
-    <option value="az">A-Z</option>
-  </select>
-</div>
+    <div class="filters">
+        <div class="zoekgroep">
+          <input type="text" id="zoekveld" placeholder=" Zoek op titel of beschrijving..." />
+          <button id="zoekBtn" title="Zoeken">🔍</button>
+        </div>
+
+        <p id="zoekFout" style="display: none; color: #C4501B; text-align: center; font-weight: 500;">
+  ❌ Geen resultaten gevonden.
+</p>
+
+        
+        <select id="auteurFilter"><option value="">Alle kunstenaars</option></select>
+        <select id="jaarFilter"><option value="">Alle jaren</option></select>
+        <select id="sorteerJaar">
+          <option value="">Sorteer op...</option>
+          <option value="nieuwste">Nieuwste eerst</option>
+          <option value="oudste">Oudste eerst</option>
+          <option value="az">A-Z</option>
+        </select>
+      </div>
+      
 
 <!-- notatie : toggle knop voor weergave -->
 <div class="toggle-view">
   <button id="toggleView">Wissel naar kaartweergave</button>
+</div>
+
+<div id="foutmelding" style="display: none; color: white; background-color: #C4501B; padding: 15px; text-align: center; border-radius: 8px; margin: 20px auto; max-width: 800px;">
+    ⚠️ Er is iets misgegaan.
 </div>
 
 <!-- notatie : informatiecontainer -->
@@ -67,8 +80,6 @@
   <!-- notatie : kaartweergave -->
   <div id="map"></div>
 </section>
-
-
 
 <!-- notatie : scripts -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>

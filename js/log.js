@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
           if (email === "admin@brussel.be" && password === "admin123") {
             localStorage.setItem("isAdmin", "true");
             alert("✅ Welkom admin!");
-            window.location.href = "admin.html";
+            window.location.href = "admin_login.html";
           } else {
             alert("❌ Ongeldige admingegevens");
           }
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function logoutUser() {
     localStorage.removeItem("isUser");
     alert("Je bent uitgelogd als gebruiker.");
-    window.location.href = "login.html"; // 🔁 aangepast van user_login naar login
+    window.location.href = "login.html"; // 
   }
   
   function logoutAdmin() {

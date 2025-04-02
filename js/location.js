@@ -6,29 +6,43 @@ document.addEventListener('DOMContentLoaded', () => {
     const jaarFilter = document.getElementById("jaarFilter");
     const toggleBtn = document.getElementById("toggleView");
     const mapElement = document.getElementById("map");
+    const foutmeldingDiv = document.getElementById("foutmelding");
+    
+
   
     let alleLocaties = [];
     let kaart;
     let markers = [];
     let lijstWeergave = true;
+
+    function showError(boodschap = "Er is een fout opgetreden tijdens het laden van de gegevens.") {
+        if (foutmeldingDiv) {
+          foutmeldingDiv.textContent = `❌ ${boodschap}`;
+          foutmeldingDiv.style.display = "block";
+        }
+      }
   
-    if (locatieContainer) {
-      async function fetchLocaties() {
-        try {
-          const response = await fetch("https://bruxellesdata.opendatasoft.com/api/explore/v2.1/catalog/datasets/bruxelles_parcours_bd/records?limit=10");
-          const data = await response.json();
-          alleLocaties = data.results;
-  
-          const extraLocaties = [
-            {
-              titre: "Asterix en Obelix",
-              auteur: "Uderzo et Goscinny",
-              realisation: "2005",
-              adresse: "Rue de la Buanderie 33-35 - 1000 Bruxelles",
-              description: "Een kleurrijke muurschildering met Asterix & Obelix.",
-              images: [{ url: "https://www.parcoursbd.brussels/wp-content/uploads/2021/09/15_asterix_obelix_rue_buanderie_06-768x576.jpg" }],
-              geo_point_2d: { lat: 50.84693088408534, lon: 4.341801182264361 }
-            },
+      if (locatieContainer) {
+        async function fetchLocaties() {
+          try {
+            const response = await fetch("https://bruxellesdata.opendatasoft.com/api/explore/v2.1/catalog/datasets/bruxelles_parcours_bd/records?limit=10");
+            const data = await response.json();
+      
+            if (!Array.isArray(data.results) || data.results.length === 0) {
+              showError("Geen locaties gevonden in de dataset.");
+              return;
+            }
+      
+            const extraLocaties = [
+              {
+                titre: "Asterix en Obelix",
+                auteur: "Uderzo et Goscinny",
+                realisation: "2005",
+                adresse: "Rue de la Buanderie 33-35 - 1000 Bruxelles",
+                description: "Een kleurrijke muurschildering met Asterix & Obelix.",
+                images: [{ url: "https://www.parcoursbd.brussels/wp-content/uploads/2021/09/15_asterix_obelix_rue_buanderie_06-768x576.jpg" }],
+                geo_point_2d: { lat: 50.84693088408534, lon: 4.341801182264361 }
+              },
             {
               titre: "Billy the cat",
               auteur: "Colman et Desberg",
@@ -189,21 +203,25 @@ document.addEventListener('DOMContentLoaded', () => {
         const geselecteerdJaar = jaarFilter.value;
   
         let gefilterd = alleLocaties.filter(r => {
-          const matchTitel = r.titre?.toLowerCase().includes(zoekterm);
-          const matchBeschrijving = r.description?.toLowerCase().includes(zoekterm);
-          const matchAuteur = geselecteerdeAuteur === "" || r.auteur === geselecteerdeAuteur;
-          const matchJaar = geselecteerdJaar === "" || r.realisation == geselecteerdJaar;
-          return (matchTitel || matchBeschrijving) && matchAuteur && matchJaar;
-        });
-  
-        if (sorteerSelect.value === "nieuwste") {
-          gefilterd.sort((a, b) => (b.realisation || 0) - (a.realisation || 0));
-        } else if (sorteerSelect.value === "oudste") {
-          gefilterd.sort((a, b) => (a.realisation || 0) - (b.realisation || 0));
-        } else if (sorteerSelect.value === "az") {
-          gefilterd.sort((a, b) => (a.titre || "").localeCompare(b.titre || ""));
-        }
-  
+            const matchTitel = r.titre?.toLowerCase().includes(zoekterm);
+            const matchBeschrijving = r.description?.toLowerCase().includes(zoekterm);
+            const matchAuteur = geselecteerdeAuteur === "" || r.auteur === geselecteerdeAuteur;
+            const matchJaar = geselecteerdJaar === "" || r.realisation == geselecteerdJaar;
+            return (matchTitel || matchBeschrijving) && matchAuteur && matchJaar;
+          });
+        
+          // Sorteer logica...//
+          if (sorteerSelect.value === "nieuwste") {
+            gefilterd.sort((a, b) => (b.realisation || 0) - (a.realisation || 0));
+          } else if (sorteerSelect.value === "oudste") {
+            gefilterd.sort((a, b) => (a.realisation || 0) - (b.realisation || 0));
+          } else if (sorteerSelect.value === "az") {
+            gefilterd.sort((a, b) => (a.titre || "").localeCompare(b.titre || ""));
+          }
+
+        
+
+
         toonLocaties(gefilterd);
         if (!lijstWeergave) updateMap(gefilterd);
       }

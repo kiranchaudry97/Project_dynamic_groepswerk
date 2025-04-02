@@ -293,6 +293,10 @@ body.dark .voettekst {
   text-align: center;
   
 }
+
+.nieuwste-locaties{
+  text-align: center;
+}
 /* footer */
 .voettekst {
   background-color: #44948c;
@@ -490,6 +494,8 @@ body.dark .voettekst {
   outline: none;
   border-color: #C4501B;
 }
+
+
 
 
 /*favoeriet*/
