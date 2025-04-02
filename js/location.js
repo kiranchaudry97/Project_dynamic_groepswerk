@@ -15,9 +15,105 @@ document.addEventListener('DOMContentLoaded', () => {
     if (locatieContainer) {
       async function fetchLocaties() {
         try {
-          const response = await fetch("https://bruxellesdata.opendatasoft.com/api/explore/v2.1/catalog/datasets/bruxelles_parcours_bd/records?limit=20");
+          const response = await fetch("https://bruxellesdata.opendatasoft.com/api/explore/v2.1/catalog/datasets/bruxelles_parcours_bd/records?limit=10");
           const data = await response.json();
           alleLocaties = data.results;
+  
+          const extraLocaties = [
+            {
+              titre: "Asterix en Obelix",
+              auteur: "Uderzo et Goscinny",
+              realisation: "2005",
+              adresse: "Rue de la Buanderie 33-35 - 1000 Bruxelles",
+              description: "Een kleurrijke muurschildering met Asterix & Obelix.",
+              images: [{ url: "https://www.parcoursbd.brussels/wp-content/uploads/2021/09/15_asterix_obelix_rue_buanderie_06-768x576.jpg" }],
+              geo_point_2d: { lat: 50.84693088408534, lon: 4.341801182264361 }
+            },
+            {
+              titre: "Billy the cat",
+              auteur: "Colman et Desberg",
+              realisation: "2000",
+              adresse: "Rue d'Ophem 24 - 1000 Bruxelles",
+              description: "Muurschildering van Billy the Cat in Brussel.",
+              images: [{ url: "https://www.parcoursbd.brussels/wp-content/uploads/2021/09/06_billy_the_cat_rue_ophem_01_vb-685x1024.jpg" }],
+              geo_point_2d: { lat: 50.853589220561844, lon: 4.344980392872638 }
+            },
+            {
+              titre: "Blake en Mortimer",
+              auteur: "Edgar P. Jacobs",
+              realisation: "2021",
+              adresse: "Rue du Temple 6 - 1000 Bruxelles",
+              description: "Blake & Mortimer op een gevel in hartje Brussel.",
+              images: [{ url: "https://www.parcoursbd.brussels/wp-content/uploads/2021/09/08_blake_mortimer_rue_temple_01-768x1024.jpeg" }],
+              geo_point_2d: { lat: 50.83988437098996, lon: 4.351304177138129 }
+            },
+            {
+              titre: "De Smurfen",
+              auteur: "Peyo",
+              realisation: "2017",
+              adresse: "Carrefour de l'Europe 3 - 1000 Bruxelles",
+              description: "De Smurfen aan het Europakruispunt in Brussel.",
+              images: [{ url: "https://www.parcoursbd.brussels/wp-content/uploads/2021/09/54_schtroumpfs_carrefour_europe_06_vb-1-768x512.jpg" }],
+              geo_point_2d: { lat: 50.845616976922564, lon: 4.355934267340923 }
+            },
+            {
+              titre: "Jojo",
+              auteur: "André Geerts",
+              realisation: "1996",
+              adresse: "Rue Pieremans 43 - 1000 Bruxelles",
+              description: "De vrolijke Jojo op een muur in de stad.",
+              images: [{ url: "https://www.parcoursbd.brussels/wp-content/uploads/2021/09/25_petit_jojo_rue_pieremans_04_vb-685x1024.jpg" }],
+              geo_point_2d: { lat: 50.83574388868448, lon: 4.344524802874058 }
+            },
+            {
+              titre: "De dromen van Nick",
+              auteur: "Hermann",
+              realisation: "1999",
+              adresse: "Rue des Fabriques 37 - 1000 Bruxelles",
+              description: "Een dromerige muurschildering van Nick.",
+              images: [{ url: "https://www.parcoursbd.brussels/wp-content/uploads/2021/09/12_reves_nic_rue_fabriques_01_vb-768x514.jpg" }],
+              geo_point_2d: { lat: 50.84886004340463, lon: 4.340997437339567 }
+            },
+            {
+              titre: "Suske en Wiske",
+              auteur: "Willy Vandersteen",
+              realisation: "1995",
+              adresse: "Rue de Laeken 116 - 1000 Bruxelles",
+              description: "Suske en Wiske fleuren deze gevel op.",
+              images: [{ url: "https://www.parcoursbd.brussels/wp-content/uploads/2021/09/05_bob_bobette_rue_laeken_01_vb-685x1024.jpg" }],
+              geo_point_2d: { lat: 50.854687478802575, lon: 4.352086797603347 }
+            },
+            {
+              titre: "Yoko Tsuno",
+              auteur: "Roger Leloup",
+              realisation: "2011",
+              adresse: "Rue Terre-Neuve 25 - 1000 Bruxelles",
+              description: "Sciencefiction met Yoko Tsuno op een muur.",
+              images: [{ url: "https://www.parcoursbd.brussels/wp-content/uploads/2021/09/40_yoko_tsuno_rue_terre_neuve_04_vb-683x1024.jpg" }],
+              geo_point_2d: { lat: 50.842558093054976, lon: 4.34731674408932 }
+            },
+            {
+              titre: "De Schorpioen",
+              auteur: "Marini et Desberg",
+              realisation: "2002",
+              adresse: "Rue du Treurenberg 14 - 1000 Bruxelles",
+              description: "Avontuur met De Schorpioen aan een gevel.",
+              images: [{ url: "https://www.parcoursbd.brussels/wp-content/uploads/2021/09/03_scorpion_rue_treurenberg_001-715x1024.jpg" }],
+              geo_point_2d: { lat: 50.84768517978514, lon: 4.361809680843012 }
+            },
+            {
+              titre: "Het kleine vest",
+              auteur: "Aurélie William Levaux",
+              realisation: "2019",
+              adresse: "Rue Basse - tunnel - 1000 Bruxelles",
+              description: "Een intiem kunstwerk in de tunnel van Brussel.",
+              images: [{ url: "https://www.parcoursbd.brussels/wp-content/uploads/2021/09/70_petit_gilet_tunnel_basse_04-768x511.jpg" }],
+              geo_point_2d: { lat: 50.83919871, lon: 4.342035033825081 }
+            }
+          ];
+  
+          alleLocaties = [...extraLocaties, ...alleLocaties];
+  
           toonLocaties(alleLocaties);
           vulAuteurFilter(alleLocaties);
           vulJaarFilter(alleLocaties);
@@ -38,9 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
           let afbeelding = "https://via.placeholder.com/400x200?text=Geen+afbeelding";
           if (record.images && Array.isArray(record.images)) {
             const eersteAfbeelding = record.images.find(img => img.url);
-            if (eersteAfbeelding) {
-              afbeelding = eersteAfbeelding.url;
-            }
+            if (eersteAfbeelding) afbeelding = eersteAfbeelding.url;
           }
   
           const kaart = document.createElement("div");
@@ -167,7 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
   
-  // ❤️ Favorietenfunctie
+  /*notatie :Favorieten */
   function voegToeAanFavorieten(titel, beschrijving, adres, afbeelding) {
     const favorieten = JSON.parse(localStorage.getItem("favorieten")) || [];
   
@@ -187,6 +281,5 @@ document.addEventListener('DOMContentLoaded', () => {
       alert("🔐 Log eerst in om je favorieten te bekijken.");
     }
   }
-  
   window.voegToeAanFavorieten = voegToeAanFavorieten;
   
