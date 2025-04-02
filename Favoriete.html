@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mijn Favorieten | BrusselsExplorer</title>
+  <link rel="stylesheet" href="css/styl.css" />
+</head>
+<body>
+  <script>
+    if (localStorage.getItem("isUser") !== "true") {
+      alert("Log eerst in als gebruiker om favorieten te bekijken.");
+      window.location.href = "user_login.html";
+    }
+  </script>
+
+  <nav class="navigatiebalk">
+    <a href="index.html">
+      <img src="images/logo%20brussel%20parcours.png" alt="Logo BrusselsExplorer" class="logo" />
+    </a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="strip_muren.html">Stripmuren</a></li>
+      <li><a href="locatie.html">Locatie</a></li>
+      <li><a href="favorieten.html" class="active">Favorieten</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="user_logout.html">Logout</a></li>
+    </ul>
+  </nav>
+
+  <header class="pagina-header">
+    <h1>❤️ Mijn Favoriete Locaties</h1>
+  </header>
+
+  <main class="locatie-container">
+    <p>Je opgeslagen favorieten worden hieronder weergegeven.</p>
+    <div id="favorietenGrid" class="locatie-grid"></div>
+  </main>
+
+  <footer class="voettekst">
+    <div class="voettekst-inhoud">
+      <p>© Kiran Jamil Chaud-Ry & Lina Benhanj | Project Dynamic Web |</p>
+    </div>
+  </footer>
+
+  <!-- notatie : script toevoegen -->
+<script src="js/index.js"></script>
+µ
+</body>
+</html>

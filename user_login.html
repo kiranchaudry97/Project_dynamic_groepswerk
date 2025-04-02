@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gebruiker Login | BrusselsExplorer</title>
+  <link rel="stylesheet" href="css/styl.css">
+  <link rel="stylesheet" href="css/user_login.css">
+</head>
+<body>
+
+
+    <header>
+        <nav class="navigatiebalk">
+          <a href="index.html">
+            <img src="images/logo%20brussel%20parcours.png" alt="Logo BrusselsExplorer" class="logo" />
+          </a>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="comicbook.html">Stripmuren</a></li>
+            <li><a href="locatie.html" class="active">Locatie</a></li>
+            <li><a href="about.html">Over</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="user_login.html">Login</a></li>
+          </ul>
+        </nav>
+  <header class="pagina-header">
+    <h1>Gebruiker Login</h1>
+  </header>
+
+  <main class="login-container">
+    <form class="login-form" id="userLoginForm">
+      <label for="email">📧 E-mailadres</label>
+      <input type="email" id="email" required placeholder="gebruiker@brussel.be" />
+
+      <label for="password">🔒 Wachtwoord</label>
+      <input type="password" id="password" required placeholder="Wachtwoord" />
+
+      <button type="submit">Inloggen als gebruiker</button>
+      <p class="form-extra">Geen account? <a href="#">Registreer hier</a></p>
+    </form>
+  </main>
+
+  <footer class="voettekst">
+    <div class="voettekst-inhoud">
+      <p>© Kiran Jamil Chaud-Ry & Lina Benhanj | Project Dynamic Web |</p>
+    </div>
+  </footer>
+
+  <!-- notatie : script toevoegen -->
+<script src="js/index.js"></script>
+<script src="js/login.js"></script>
+
+</body>
+</html>

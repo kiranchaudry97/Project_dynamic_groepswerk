@@ -15,7 +15,7 @@
           </a>
           <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="comicbook.html">Stripmuren</a></li>
+            <li><a href="strip_muren.html">Stripmuren</a></li>
             <li><a href="locatie.html" class="active">Locatie</a></li>
             <li><a href="about.html">Over</a></li>
             <li><a href="contact.html">Contact</a></li>
@@ -23,9 +23,8 @@
           </ul>
         </nav>
       </header>
-      
 
-<!-- notatie : kunnen filter en zoeken -->
+<!-- Filter en zoekfunctionaliteit -->
 <div class="filters">
   <input type="text" id="zoekveld" placeholder="Zoek op titel of beschrijving..." />
   <select id="auteurFilter"><option value="">Alle kunstenaars</option></select>
@@ -38,21 +37,40 @@
   </select>
 </div>
 
-<!-- notatie : toggle lijst van wisselen naar kaart en gewone overzicht-->
+<!-- notatie : toggle knop voor weergave -->
 <div class="toggle-view">
   <button id="toggleView">Wissel naar kaartweergave</button>
 </div>
-<!-- notatie : locatie container het informaite -->
 
+<!-- notatie : informatiecontainer -->
 <section class="locatie-container">
   <h1>📍 Stripmuren & Locaties in Brussel</h1>
   <p>Ontdek unieke locaties met stripkunst verspreid over de stad.</p>
   <div id="locaties" class="locatie-grid"></div>
+
+  <!-- notatie :tabelweergave -->
+  <div id="locatieTabel" style="overflow-x: auto; display:none; margin-top: 40px;">
+    <table style="width: 100%; border-collapse: collapse;">
+      <thead>
+        <tr style="background-color: #C4501B; color: white;">
+          <th style="padding: 10px;">Titel</th>
+          <th style="padding: 10px;">Kunst</th>
+          <th style="padding: 10px;">Adres</th>
+          <th style="padding: 10px;">Jaar</th>
+          <th style="padding: 10px;">Beschrijving</th>
+          <th style="padding: 10px;">Link</th>
+        </tr>
+      </thead>
+      <tbody id="locatieTabelBody"></tbody>
+    </table>
+  </div>
+
+  <!-- notatie : kaartweergave -->
   <div id="map"></div>
 </section>
 
-<!-- notatie : script-->
+<!-- notatie : scripts -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="js/index.js"></script>
+<script src="js/location.js"></script>
 </body>
 </html>

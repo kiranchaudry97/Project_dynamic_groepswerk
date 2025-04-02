@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Boldonse&family=Chewy&family=Hind+Siliguri:wght@300;400;500;600;700&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lilita+One&family=Montserrat&family=Outfit:wght@100..900&family=Port+Lligat+Slab&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sigmar+One&display=swap');
 
+
+/*voorpagina ---> index.html*/
 body {
   margin: 0;
   padding: 0;
@@ -133,7 +135,7 @@ body.dark #taal:hover {
   margin: 0;
 }
 
-/* Stripmenu */
+/* voorpagina over extra info over stripmuren -->index */
 .gelijke-kolommen {
   display: flex;
   flex-direction: column;
@@ -246,8 +248,59 @@ body.dark .voettekst {
 }
 
 
+/*Strip muren pagina ---> strip_muren.html*/
 
-/*locatie pagina*/
+.stripmuren-header {
+  text-align: center;
+  padding: 40px 20px 20px;
+  background-color: #dedcff;
+  font-family: "Outfit", sans-serif;
+}
+
+.stripmuren-header h1 {
+  font-size: 2.5rem;
+  color: #1c1c3a;
+  margin: 0;
+}
+
+.stripmuren-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: "Outfit", sans-serif;
+}
+
+.stripmuren-gegevens {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stripmuren-gegevens h2 {
+  font-size: 1.5rem;
+  margin-top: 30px;
+  color: #C4501B;
+  font-weight: 600;
+}
+
+.stripmuren-gegevens p {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  max-width: 600px;
+}
+
+
+
+
+
+
+
+
+
+
+
+/*locatie pagina met container en grid -->locatie.html */
 
 .locatie-container {
   padding: 40px 20px;
@@ -300,7 +353,7 @@ body.dark .voettekst {
   border-top-right-radius: 30px;
 }
 
-/* Inhoud */
+/* Inhoud van locatie container en grid van de overzicht*/
 
 .locatie-container {
   padding: 40px 20px;
@@ -352,6 +405,9 @@ body.dark .voettekst {
     height: 150px;
   }
 }
+
+
+
 
 /*filters van zoekbalk*/
 .filters {
@@ -478,6 +534,52 @@ body.dark .voettekst {
 }
 
 
+/*over ons ---> about.html*/
+/*about pagina */
+
+.pagina-missie {
+  text-align: center;
+  padding: 40px 20px 20px;
+  background-color: #dedcff;
+  font-family: "Outfit", sans-serif;
+}
+
+.pagina-header h1 {
+  font-size: 2.5rem;
+  color: #1c1c3a;
+  margin: 0;
+}
+
+.missie-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: "Outfit", sans-serif;
+}
+
+.missie-container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.missie-container h2 {
+  font-size: 1.5rem;
+  margin-top: 30px;
+  color: #C4501B;
+  font-weight: 600;
+}
+
+.missie-container p {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  max-width: 600px;
+  text-align: center;
+}
+
+
+
 /*  contact pagina */
 
 .pagina-header {
@@ -558,92 +660,50 @@ body.dark .voettekst {
 }
 
 
-/*about pagina */
-
-.pagina-header {
-  text-align: center;
-  padding: 40px 20px 20px;
-  background-color: #dedcff;
-  font-family: "Outfit", sans-serif;
-}
-
-.pagina-header h1 {
-  font-size: 2.5rem;
-  color: #1c1c3a;
-  margin: 0;
-}
-
-.contact-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 40px 20px;
-  font-family: "Outfit", sans-serif;
-}
-
-.contact-gegevens {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.contact-gegevens h2 {
-  font-size: 1.5rem;
-  margin-top: 30px;
-  color: #C4501B;
-  font-weight: 600;
-}
-
-.contact-gegevens p {
-  font-size: 1.1rem;
-  margin-bottom: 15px;
-  max-width: 600px;
-  text-align: center;
-}
-
-.contact-gegevens a {
-  color: #000;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.2s ease;
-}
-
-.contact-gegevens a:hover {
-  color: #433bff;
-  text-decoration: underline;
-}
-
 
 /*Login pagina */
+.login-form select {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 100px;
+  background-color: #dedcff;
+  color: #333;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.login-form select:focus {
+  border-color: #C4501B;
+}
+
 
 .login-container {
   max-width: 400px;
-  margin: 0 auto;
-  padding: 40px 20px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
   text-align: center;
-  font-family: "Outfit", sans-serif;
 }
 
 .login-form {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  background-color: #f5f5f5;
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
 }
 
 .login-form label {
-  font-weight: 500;
   text-align: left;
+  font-weight: 500;
   color: #333;
 }
 
 .login-form input {
   padding: 10px;
-  border-radius: 30px;
   border: 1px solid #ccc;
+  border-radius: 30px;
   font-size: 1rem;
   outline: none;
   transition: border-color 0.3s;
@@ -656,17 +716,16 @@ body.dark .voettekst {
 .login-form button {
   padding: 10px;
   border: none;
-  background-color: #C4501B;
+  background-color: #44948c;
   color: white;
   border-radius: 30px;
-  cursor: pointer;
   font-weight: bold;
-  font-size: 1rem;
+  cursor: pointer;
   transition: background-color 0.3s;
 }
 
 .login-form button:hover {
-  background-color: #a63d15;
+  background-color: #2c8474;
 }
 
 .form-extra {
@@ -681,4 +740,107 @@ body.dark .voettekst {
 
 .form-extra a:hover {
   text-decoration: underline;
+}
+
+
+/* logout*/
+.contact-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.contact-gegevens p {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+
+/*favoerite*/
+
+.pagina-header {
+  background-color: #dedcff;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.pagina-header h1 {
+  font-size: 2.2rem;
+  color: #1c1c3a;
+}
+
+.locatie-container {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.locatie-container p {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.locatie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.locatie-kaart {
+  background-color: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.locatie-kaart:hover {
+  transform: scale(1.02);
+}
+
+.locatie-afbeelding {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.locatie-inhoud {
+  padding: 15px;
+}
+
+.locatie-inhoud h2 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #C4501B;
+}
+
+.locatie-inhoud p {
+  font-size: 0.95rem;
+  margin: 5px 0;
+  color: #333;
+}
+
+.favoriet-btn {
+  margin-top: 10px;
+  padding: 6px 12px;
+  border: none;
+  background-color: #ff5555;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.favoriet-btn:hover {
+  background-color: #d13c3c;
 }

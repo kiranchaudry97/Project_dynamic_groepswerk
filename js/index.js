@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // =================== THEMA ===================
+
+  // Thema toggle
   const toggleButton = document.getElementById('toggleTheme');
   const body = document.body;
 
@@ -26,211 +27,108 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // =================== LOCATIE LIJST PAGINA ===================
-  const locatieContainer = document.getElementById("locaties");
-  const zoekveld = document.getElementById("zoekveld");
-  const auteurFilter = document.getElementById("auteurFilter");
-  const sorteerSelect = document.getElementById("sorteerJaar");
-  const jaarFilter = document.getElementById("jaarFilter");
-  const toggleBtn = document.getElementById("toggleView");
-  const mapElement = document.getElementById("map");
+  // Login functionaliteit
+  const loginForm = document.getElementById("loginForm");
 
-  let alleLocaties = [];
-  let kaart;
-  let markers = [];
-  let lijstWeergave = true;
+  if (loginForm) {
+    loginForm.addEventListener("submit", function (e) {
+      e.preventDefault();
 
-  if (locatieContainer) {
-    async function fetchLocaties() {
-      try {
-        const response = await fetch("https://bruxellesdata.opendatasoft.com/api/explore/v2.1/catalog/datasets/bruxelles_parcours_bd/records?limit=20");
-        const data = await response.json();
-        alleLocaties = data.results;
-        toonLocaties(alleLocaties);
-        vulAuteurFilter(alleLocaties);
-        vulJaarFilter(alleLocaties);
-      } catch (error) {
-        locatieContainer.innerHTML = `<p>❌ Fout bij laden van data.</p>`;
-      }
-    }
+      const rol = document.getElementById("rol").value;
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
 
-    function toonLocaties(data) {
-      locatieContainer.innerHTML = "";
-      data.forEach((record, index) => {
-        console.log("📄 Volledige record:", record);
-
-        const titel = record.titre || `Locatie ${index + 1}`;
-        const beschrijving = record.description || "Geen beschrijving beschikbaar.";
-        const adres = record.adresse || "Geen adres vermeld.";
-        const auteur = record.auteur || "Onbekend";
-        const realisatie = record.realisation || "?";
-
-        let afbeelding = "https://via.placeholder.com/400x200?text=Geen+afbeelding";
-        if (record.images && Array.isArray(record.images)) {
-          const eersteAfbeelding = record.images.find(img => img.url);
-          if (eersteAfbeelding) {
-            afbeelding = eersteAfbeelding.url;
-          }
+      if (rol === "gebruiker") {
+        if (email === "gebruiker@brussel.be" && password === "user123") {
+          localStorage.setItem("isUser", "true");
+          alert("✅ Welkom gebruiker!");
+          window.location.href = "index.html";
+        } else {
+          alert("❌ Ongeldige gebruikersgegevens");
         }
 
+      } else if (rol === "admin") {
+        if (email === "admin@brussel.be" && password === "admin123") {
+          localStorage.setItem("isAdmin", "true");
+          alert("✅ Welkom admin!");
+          window.location.href = "admin.html";
+        } else {
+          alert("❌ Ongeldige admingegevens");
+        }
+
+      } else {
+        alert("⚠️ Kies een rol om in te loggen.");
+      }
+    });
+  }
+
+  // Favorieten overzicht
+  const container = document.getElementById("favorietenGrid");
+  if (container) {
+    const favorieten = JSON.parse(localStorage.getItem("favorieten")) || [];
+
+    if (favorieten.length === 0) {
+      container.innerHTML = "<p>Je hebt nog geen favorieten opgeslagen.</p>";
+    } else {
+      favorieten.forEach((item, index) => {
         const kaart = document.createElement("div");
         kaart.className = "locatie-kaart";
 
+        const afbeelding = item.afbeelding || "https://via.placeholder.com/400x200?text=Geen+afbeelding";
+
         kaart.innerHTML = `
-          <img src="${afbeelding}" alt="Afbeelding van ${titel}" class="locatie-afbeelding">
+          <img src="${afbeelding}" alt="Afbeelding van ${item.titel}" class="locatie-afbeelding" />
           <div class="locatie-inhoud">
-            <h2>${titel}</h2>
-            <p><strong>🎨 Kunst:</strong> ${auteur}</p>
-            <p><strong>📍 Locatie:</strong> ${adres}</p>
-            <p><strong>📅 Jaar:</strong> ${realisatie}</p>
-            <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(adres)}" 
-               target="_blank" class="kaart-link">🔗 Open in Google Maps</a>
+            <h2>${item.titel}</h2>
+            <p>${item.beschrijving || "Geen beschrijving."}</p>
+            <p><strong>📍</strong> ${item.adres || "Onbekend adres"}</p>
+            <button onclick="verwijderFavoriet(${index})" class="favoriet-btn actief">Verwijder ❤️</button>
           </div>
         `;
 
-        kaart.addEventListener("click", () => {
-          sessionStorage.setItem("detailLocatie", JSON.stringify(record));
-          window.location.href = "locatie-detail.html";
-        });
-
-        locatieContainer.appendChild(kaart);
+        container.appendChild(kaart);
       });
     }
-
-    function vulAuteurFilter(data) {
-      const auteurs = [...new Set(data.map(item => item.auteur).filter(Boolean))].sort();
-      auteurs.forEach(auteur => {
-        const optie = document.createElement("option");
-        optie.value = auteur;
-        optie.textContent = auteur;
-        auteurFilter.appendChild(optie);
-      });
-    }
-
-    function vulJaarFilter(data) {
-      const jaren = [...new Set(data.map(item => item.realisation).filter(Boolean))].sort((a, b) => a - b);
-      jaren.forEach(jaar => {
-        const optie = document.createElement("option");
-        optie.value = jaar;
-        optie.textContent = jaar;
-        jaarFilter.appendChild(optie);
-      });
-    }
-
-    function filterLocaties() {
-      const zoekterm = zoekveld.value.toLowerCase();
-      const geselecteerdeAuteur = auteurFilter.value;
-      const geselecteerdJaar = jaarFilter.value;
-
-      let gefilterd = alleLocaties.filter(r => {
-        const matchTitel = r.titre?.toLowerCase().includes(zoekterm);
-        const matchBeschrijving = r.description?.toLowerCase().includes(zoekterm);
-        const matchAuteur = geselecteerdeAuteur === "" || r.auteur === geselecteerdeAuteur;
-        const matchJaar = geselecteerdJaar === "" || r.realisation == geselecteerdJaar;
-        return (matchTitel || matchBeschrijving) && matchAuteur && matchJaar;
-      });
-
-      if (sorteerSelect.value === "nieuwste") {
-        gefilterd.sort((a, b) => (b.realisation || 0) - (a.realisation || 0));
-      } else if (sorteerSelect.value === "oudste") {
-        gefilterd.sort((a, b) => (a.realisation || 0) - (b.realisation || 0));
-      } else if (sorteerSelect.value === "az") {
-        gefilterd.sort((a, b) => (a.titre || "").localeCompare(b.titre || ""));
-      }
-
-      toonLocaties(gefilterd);
-      if (!lijstWeergave) updateMap(gefilterd);
-    }
-
-    function initMap() {
-      kaart = L.map('map').setView([50.8503, 4.3517], 13);
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; OpenStreetMap bijdragende auteurs'
-      }).addTo(kaart);
-    }
-
-    function updateMap(data) {
-      markers.forEach(m => kaart.removeLayer(m));
-      markers = [];
-
-      data.forEach(record => {
-        const coords = record.geo_point_2d;
-        if (!coords) return;
-
-        let afbeelding = "";
-        if (record.images && Array.isArray(record.images)) {
-          const eersteAfbeelding = record.images.find(img => img.url);
-          if (eersteAfbeelding) {
-            afbeelding = `<br><img src='${eersteAfbeelding.url}' style='width:100px; margin-top:5px; border-radius:8px;'>`;
-          }
-        }
-
-        const marker = L.marker([coords.lat, coords.lon])
-          .addTo(kaart)
-          .bindPopup(`<strong>${record.titre}</strong><br>${record.adresse || "Geen adres"}${afbeelding}`);
-        markers.push(marker);
-      });
-    }
-
-    toggleBtn.addEventListener("click", () => {
-      lijstWeergave = !lijstWeergave;
-      locatieContainer.style.display = lijstWeergave ? "grid" : "none";
-      mapElement.style.display = lijstWeergave ? "none" : "block";
-      toggleBtn.textContent = lijstWeergave ? "Wissel naar kaartweergave" : "Wissel naar lijstweergave";
-
-      if (!kaart && !lijstWeergave) {
-        initMap();
-        updateMap(alleLocaties);
-      } else if (!lijstWeergave) {
-        kaart.invalidateSize();
-        updateMap(alleLocaties);
-      }
-    });
-
-    zoekveld.addEventListener("input", filterLocaties);
-    auteurFilter.addEventListener("change", filterLocaties);
-    sorteerSelect.addEventListener("change", filterLocaties);
-    jaarFilter.addEventListener("change", filterLocaties);
-
-    fetchLocaties();
   }
 
-  // =================== LOCATIE DETAIL PAGINA ===================
-  const detailDiv = document.getElementById("locatie-detail");
-  if (detailDiv) {
-    const data = JSON.parse(sessionStorage.getItem("detailLocatie"));
-    console.log("📦 Gegevens ontvangen:", data);
-
-    if (data) {
-      const afbeelding = data.images?.[0]?.url || "https://via.placeholder.com/800x300?text=Geen+afbeelding";
-      const googleMapsLink = data.geo_point_2d
-        ? `https://www.google.com/maps?q=${data.geo_point_2d.lat},${data.geo_point_2d.lon}`
-        : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(data.adresse || '')}`;
-
-      detailDiv.innerHTML = `
-        <img src="${afbeelding}" alt="${data.titre}">
-        <h1>${data.titre || "Onbekende locatie"}</h1>
-        <p><strong>🎨 Kunst:</strong> ${data.auteur || "Onbekend"}</p>
-        <p><strong>📅 Jaar:</strong> ${data.realisation || "?"}</p>
-        <p><strong>📍 Adres:</strong> ${data.adresse || "Geen adres"}</p>
-        <p>${data.description || "Geen beschrijving beschikbaar."}</p>
-        <a href="${googleMapsLink}" target="_blank" class="kaart-link">🔗 Open in Google Maps</a>
-      `;
-
-      if (data.geo_point_2d) {
-        const map = L.map('map').setView([data.geo_point_2d.lat, data.geo_point_2d.lon], 15);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          attribution: '&copy; OpenStreetMap'
-        }).addTo(map);
-        L.marker([data.geo_point_2d.lat, data.geo_point_2d.lon])
-          .addTo(map)
-          .bindPopup(data.titre || "Locatie")
-          .openPopup();
-      } else {
-        document.getElementById("map").innerHTML = "<p>Geen locatiegegevens beschikbaar voor kaart.</p>";
-      }
-    } else {
-      detailDiv.innerHTML = "<p>Geen gegevens gevonden. Keer terug naar <a href='locatie.html'>de lijst</a>.</p>";
-    }
-  }
 });
+
+// Logout functies
+function logoutUser() {
+  localStorage.removeItem("isUser");
+  alert("Je bent uitgelogd als gebruiker.");
+  window.location.href = "user_login.html";
+}
+
+function logoutAdmin() {
+  localStorage.removeItem("isAdmin");
+  alert("Je bent uitgelogd als admin.");
+  window.location.href = "admin_login.html";
+}
+
+// Maak de logout functies beschikbaar
+window.logoutUser = logoutUser;
+window.logoutAdmin = logoutAdmin;
+
+// Toevoegen aan favorieten vanuit andere pagina's
+function voegToeAanFavorieten(titel, beschrijving, adres, afbeelding) {
+  const huidige = JSON.parse(localStorage.getItem("favorieten")) || [];
+  huidige.push({
+    titel,
+    beschrijving,
+    adres,
+    afbeelding
+  });
+  localStorage.setItem("favorieten", JSON.stringify(huidige));
+  alert("✅ Toegevoegd aan favorieten!");
+}
+window.voegToeAanFavorieten = voegToeAanFavorieten;
+
+// Verwijderen vanuit favorietenpagina
+function verwijderFavoriet(index) {
+  const favorieten = JSON.parse(localStorage.getItem("favorieten")) || [];
+  favorieten.splice(index, 1);
+  localStorage.setItem("favorieten", JSON.stringify(favorieten));
+  window.location.reload();
+}
+window.verwijderFavoriet = verwijderFavoriet;

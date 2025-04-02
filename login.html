@@ -7,51 +7,47 @@
   <link rel="stylesheet" href="css/styl.css" />
 </head>
 <body>
-  <!-- Notatie : nav van verschillende pagina's -->
-  <header>
     <nav class="navigatiebalk">
-      <a href="index.html">
-        <img src="images/logo%20brussel%20parcours.png" alt="Logo BrusselsExplorer" class="logo" />
-      </a>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="comicbook.html">Stripmuren</a></li>
-        <li><a href="locatie.html">Locatie</a></li>
-        <li><a href="about.html">Over</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="login.html" class="active">Login</a></li>
-      </ul>
-    </nav>
-  </header>
+        <a href="index.html">
+          <img src="images/logo%20brussel%20parcours.png" alt="Logo BrusselsExplorer" class="logo">
+        </a>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="strip_muren.html">Stripmuren</a></li>
+          <li><a href="locatie.html" class="active">Locatie</a></li>
+          <li><a href="about.html">Over</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="login.html">Login</a></li>
+        </ul>
+      </nav>
+      
+  <div class="login-container">
+    <h1>🔐 Login</h1>
 
-  <!-- notatie: login gegevens maken-->
-  <header class="pagina-header">
-    <h1>Login of Maak een account</h1>
-  </header>
+    <form id="loginForm" class="login-form">
+      <label for="rol">Kies rol:</label>
+      <select id="rol" required>
+        <option value="">-- Selecteer rol --</option>
+        <option value="gebruiker">Gebruiker</option>
+        <option value="admin">Admin</option>
+      </select>
 
-  <main class="login-container">
-    <form class="login-form">
-      <label for="email">📧 E-mailadres</label>
-      <input type="email" id="email" name="email" required placeholder="E-mail" />
+      <label for="email">E-mailadres</label>
+      <input type="email" id="email" required placeholder="bijv. gebruiker@brussel.be" />
 
-      <label for="password">🔐 Wachtwoord</label>
-      <input type="password" id="password" name="password" required placeholder="Wachtwoord" />
+      <label for="password">Wachtwoord</label>
+      <input type="password" id="password" required placeholder="Voer je wachtwoord in" />
 
       <button type="submit">Inloggen</button>
-
-      <p class="form-extra">Nog geen account? <a href="#">Registreer hier</a></p>
     </form>
-  </main>
 
-  <footer class="voettekst">
-    <div class="voettekst-inhoud">
-      <p>© Kiran Jamil Chaud-Ry & Lina Benhanj | Project Dynamic Web |</p>
+    <div class="form-extra">
+      <p>🔑 Gebruik/admin gegevens:<br>
+      gebruiker@brussel.be / user123<br>
+      admin@brussel.be / admin123</p>
     </div>
-  </footer>
+  </div>
 
-  <!-- notatie : script toevoegen -->
-<script src="js/index.js"></script>
-<script src="js/login.js"></script>
-
+  <script src="js/login.js"></script>
 </body>
 </html>
