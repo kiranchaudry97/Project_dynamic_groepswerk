@@ -6,21 +6,52 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BrusselsExplorer</title>
   <link rel="stylesheet" href="css/styl.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <style>
+      .map-container {
+          display: grid;
+          grid-template-columns: 1fr;
+          justify-items: center;
+          text-align: center;
+          margin: 20px;
+      }
+      .map-container h2 {
+          font-size: 24px;
+          margin-bottom: 5px;
+      }
+      .map-container h3 {
+          font-size: 16px;
+          color: gray;
+          margin-bottom: 15px;
+      }
+      #map { 
+          width: 80%; 
+          height: 400px; 
+          border-radius: 10px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+  </style>
 </head>
+
 <body>
 
-<!-- notatie : switch controle aanmaken en talen toevoegen -->
 <div class="top-controls">
   <button id="toggleTheme">🌙 Donker / Licht</button>
-  
+  <select id="taal">
+    <option value="nl">Nederlands</option>
+    <option value="fr">Frans</option>
+    <option value="en">Engels</option>
+  </select>
 </div>
-<!-- notatie : navigatie balke en de andere pagina's, toevoegen van logo-->
+
 <nav class="navigatiebalk">
   <a href="index.html">
     <img src="images/logo%20brussel%20parcours.png" alt="Logo BrusselsExplorer" class="logo">
   </a>
   <ul>
     <li><a href="index.html">Home</a></li>
+    <li><a href="strip_muren.html">Stripmuren</a></li>
     <li><a href="locatie.html" class="active">Locatie</a></li>
     <li><a href="about.html">Over</a></li>
     <li><a href="contact.html">Contact</a></li>
@@ -28,46 +59,51 @@
   </ul>
 </nav>
 
-
-<!--notatie :  banner en intro voor welkom vermelden -->
 <section class="banner">
   <img src="images/stripart.jpg" alt="Bannerafbeelding">
   <div class="banner-tekst">
-    <h1>🏜️ Welkom op BrusselsExplorer !</h1>
+    <h1> Welkom op BrusselsExplorer !</h1>
     <h3>Bekijk onze interessante comic parkours in Brussel.<br>
         Ontdek de kleurrijke stripmuurschilderingen die onze stad tot leven brengen.</h3>
   </div>
 </section>
 
+<section class="map-container">
+    <h2>📍 Onze Locaties</h2>
+    <h3>Bekijk hier al onze locaties op de kaart en ontdek de beste stripmuren in Brussel!</h3>
+    <div id="map"></div>
+</section>
 
-<!-- natatie : kunnen filteren en  0pzoeken -->
-<section class="gelijke-kolommen">
-  <div class="stripmenu">
-    <div class="striponderdeel">
-      <h1>Strip route</h1>
-      <input type="text" id="zoekveld" placeholder="Zoek op naam of artiest...">
-      <select id="typeFilter">
-        <option value="">Alle types</option>
-        <option value="muurschildering">Muurschildering</option>
-        <option value="beeld">Standbeeld</option>
-      </select>
-      <select id="sorteer">
-        <option value="naam">Sorteer op naam</option>
-        <option value="jaartal">Sorteer op jaartal</option>
-      </select>
-      <div id="dataContainer"></div>
-    </div>
+<section class="top-3-locaties">
+  <h2>Top 3 Populaire Locaties</h2>
+  <div class="locatie" id="locatie-1">
+      <img src="https://www.parcoursbd.brussels/wp-content/uploads/2021/09/25_petit_jojo_rue_pieremans_04_vb-685x1024.jpg" alt="Jojo" />
+      <h3>Jojo</h3>
+      <p>Rue Pieremans 43, 1000 Brussel</p>
+      <button onclick="window.location.href='jojo_info.html'">Meer info</button>
+  </div>
+  <div class="locatie" id="locatie-2">
+      <img src="https://www.parcoursbd.brussels/wp-content/uploads/2021/09/12_reves_nic_rue_fabriques_01_vb-768x514.jpg" alt="De Dromen van Nick" />
+      <h3>De dromen van Nick</h3>
+      <p>Rue des Fabriques 37, 1000 Brussel</p>
+      <button onclick="window.location.href='dromen_van_nick_info.html'">Meer info</button>
+  </div>
+  <div class="locatie" id="locatie-3">
+      <img src="https://www.parcoursbd.brussels/wp-content/uploads/2021/09/05_bob_bobette_rue_laeken_01_vb-685x1024.jpg" alt="Suske en Wiske" />
+      <h3>Suske en Wiske</h3>
+      <p>Rue de Laeken 116, 1000 Brussel</p>
+      <button onclick="window.location.href='suske_en_wiske_info.html'">Meer info</button>
   </div>
 </section>
 
-<!-- notatie : footer aanmaken groepswerk en project vermelden -->
+
 <footer class="voettekst">
   <div class="voettekst-inhoud">
     <p>© Kiran Jamil Chaud-Ry & Lina Benhanj | Project Dynamic Web |</p>
   </div>
 </footer>
 
-<!-- notatie : script toevoegen -->
+<script src="js/map.js"></script>
 <script src="js/index.js"></script>
 <script src="js/login.js"></script>
 
