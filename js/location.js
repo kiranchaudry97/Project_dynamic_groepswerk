@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    /*locatie lijst pagina */
     const locatieContainer = document.getElementById("locaties");
     const zoekveld = document.getElementById("zoekveld");
     const auteurFilter = document.getElementById("auteurFilter");
@@ -56,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <p><strong>📅 Jaar:</strong> ${realisatie}</p>
               <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(adres)}" 
                  target="_blank" class="kaart-link">🔗 Open in Google Maps</a>
-              <button class="favoriet-btn" onclick="voegToeAanFavorieten('${titel}', \`${beschrijving}\`, '${adres}', '${afbeelding}')">❤️ Voeg toe</button>
+              <button class="favoriet-btn" onclick="event.stopPropagation(); voegToeAanFavorieten('${titel}', \`${beschrijving}\`, '${adres}', '${afbeelding}')">❤️ Voeg toe</button>
             </div>
           `;
   
@@ -167,4 +166,27 @@ document.addEventListener('DOMContentLoaded', () => {
       fetchLocaties();
     }
   });
+  
+  // ❤️ Favorietenfunctie
+  function voegToeAanFavorieten(titel, beschrijving, adres, afbeelding) {
+    const favorieten = JSON.parse(localStorage.getItem("favorieten")) || [];
+  
+    const bestaatAl = favorieten.some(item => item.titel === titel && item.adres === adres);
+    if (bestaatAl) {
+      alert("⚠️ Deze locatie zit al in je favorieten.");
+      return;
+    }
+  
+    favorieten.push({ titel, beschrijving, adres, afbeelding });
+    localStorage.setItem("favorieten", JSON.stringify(favorieten));
+    alert("✅ Toegevoegd aan favorieten!");
+  
+    if (localStorage.getItem("isUser") === "true") {
+      window.location.href = "favorieten.html";
+    } else {
+      alert("🔐 Log eerst in om je favorieten te bekijken.");
+    }
+  }
+  
+  window.voegToeAanFavorieten = voegToeAanFavorieten;
   

@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // notatie :Login functionaliteit
     const loginForm = document.getElementById("loginForm");
     const favorietenSectie = document.getElementById("favorietenSectie");
     const favorietenGrid = document.getElementById("favorietenGrid");
@@ -16,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
           if (email === "gebruiker@brussel.be" && password === "user123") {
             localStorage.setItem("isUser", "true");
             alert("✅ Welkom gebruiker!");
-            toonFavorieten();
+            window.location.href = "favorieten.html";
           } else {
             alert("❌ Ongeldige gebruikersgegevens");
           }
@@ -36,12 +35,10 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
   
-    // notatie : automatisch tonen van favorieten bij actieve gebruiker
-    if (localStorage.getItem("isUser") === "true" && favorietenSectie) {
+    if (localStorage.getItem("isUser") === "true" && favorietenSectie && favorietenGrid) {
       toonFavorieten();
     }
   
-    // notatie :Favorieten overzicht tonen
     function toonFavorieten() {
       if (loginForm) loginForm.style.display = "none";
       if (favorietenSectie) favorietenSectie.style.display = "block";
@@ -75,11 +72,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
   
-  // notatie :Logout functies
+  // notatie: Logout functies
   function logoutUser() {
     localStorage.removeItem("isUser");
     alert("Je bent uitgelogd als gebruiker.");
-    window.location.href = "user_login.html";
+    window.location.href = "login.html"; // 🔁 aangepast van user_login naar login
   }
   
   function logoutAdmin() {
@@ -91,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.logoutUser = logoutUser;
   window.logoutAdmin = logoutAdmin;
   
-  // notatie :Verwijderen vanuit favorieten
+  // notatie : Favoriet verwijderen
   function verwijderFavoriet(index) {
     const favorieten = JSON.parse(localStorage.getItem("favorieten")) || [];
     favorieten.splice(index, 1);

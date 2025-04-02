@@ -758,47 +758,43 @@ body.dark .voettekst {
 }
 
 
-/*favoerite*/
-
-.pagina-header {
+/* Favorietenpagina  */
+.paginaf-header {
+  text-align: center;
+  padding: 40px 20px 20px;
   background-color: #dedcff;
-  text-align: center;
-  padding: 40px 20px;
+  font-family: "Outfit", sans-serif;
 }
 
-.pagina-header h1 {
-  font-size: 2.2rem;
+.paginaf-header h1 {
+  font-size: 2.5rem;
   color: #1c1c3a;
+  margin: 0;
 }
 
-.locatie-container {
-  padding: 40px 20px;
-  max-width: 1200px;
+#favorietenSectie {
+  max-width: 1100px;
   margin: 0 auto;
+  padding: 40px 20px;
   text-align: center;
 }
 
-.locatie-container p {
-  font-size: 1rem;
-  color: #333;
-  margin-bottom: 30px;
-}
-
-.locatie-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+#favorietenGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 25px;
 }
 
+/* Kaartstijl */
 .locatie-kaart {
   background-color: #ffffff;
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease;
-  display: flex;
-  flex-direction: column;
+  width: 300px;
   text-align: left;
+  transition: transform 0.2s ease;
 }
 
 .locatie-kaart:hover {
@@ -809,8 +805,6 @@ body.dark .voettekst {
   width: 100%;
   height: 180px;
   object-fit: cover;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
 }
 
 .locatie-inhoud {
@@ -835,7 +829,7 @@ body.dark .voettekst {
   border: none;
   background-color: #ff5555;
   color: white;
-  border-radius: 20px;
+  border-radius: 25px;
   cursor: pointer;
   font-weight: 500;
   transition: background-color 0.2s;
