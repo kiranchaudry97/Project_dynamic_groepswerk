@@ -202,10 +202,12 @@ body.dark .voettekst {
   height: auto;
   filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.5));
   transition: transform 0.3s ease;
+  
 }
 
 .vaardigheden-raster img:hover {
   transform: scale(1.1);
+ 
 }
 
 
@@ -376,6 +378,7 @@ body.dark .voettekst {
   display: flex;
   flex-direction: column;
   text-align: left;
+  cursor: pointer;
 }
 
 .locatie-kaart:hover {
@@ -487,6 +490,7 @@ body.dark .voettekst {
   min-width: 200px;
   background-color: #f5f5f5;
   color: #333;
+  cursor: pointer;
 }
 
 .filters input:focus,
@@ -799,6 +803,7 @@ body.dark .voettekst {
   font-size: 1rem;
   outline: none;
   transition: border-color 0.3s ease;
+  cursor: pointer;
 }
 
 .login-form select:focus {
