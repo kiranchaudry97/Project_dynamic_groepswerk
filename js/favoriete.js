@@ -117,32 +117,32 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }  
 
-  function filterLocaties() {
-    const zoek = zoekveld.value.toLowerCase();
-    const auteur = auteurFilter.value;
-    const jaar = jaarFilter.value;
-    const sorteer = sorteerSelect.value;
-  
-    const gefilterd = alleLocaties.filter(loc => {
-      return (
-        (loc.titre?.toLowerCase().includes(zoek) || loc.description?.toLowerCase().includes(zoek)) &&
-        (!auteur || loc.auteur === auteur) &&
-        (!jaar || loc.realisation == jaar)
-      );
-    });
-  
-    const sorteerFuncties = {
-      nieuwste: (a, b) => (b.realisation || 0) - (a.realisation || 0),
-      oudste: (a, b) => (a.realisation || 0) - (b.realisation || 0),
-      az: (a, b) => (a.titre || "").localeCompare(b.titre || "")
-    };
-  
-    if (sorteerFuncties[sorteer]) gefilterd.sort(sorteerFuncties[sorteer]);
-  
-    toonLocaties(gefilterd);
-    if (!lijstWeergave) updateMap(gefilterd);
-  }
-  
+function filterLocaties() {
+  const zoek = zoekveld.value.toLowerCase();
+  const auteur = auteurFilter.value;
+  const jaar = jaarFilter.value;
+  const sorteer = sorteerSelect.value;
+
+  const gefilterd = alleLocaties.filter(loc => {
+    return (
+      (loc.titre?.toLowerCase().includes(zoek) || loc.description?.toLowerCase().includes(zoek)) &&
+      (!auteur || loc.auteur === auteur) &&
+      (!jaar || loc.realisation == jaar)
+    );
+  });
+
+  const sorteerFuncties = {
+    nieuwste: (a, b) => (b.realisation || 0) - (a.realisation || 0),
+    oudste: (a, b) => (a.realisation || 0) - (b.realisation || 0),
+    az: (a, b) => (a.titre || "").localeCompare(b.titre || "")
+  };
+
+  if (sorteerFuncties[sorteer]) gefilterd.sort(sorteerFuncties[sorteer]);
+
+  toonLocaties(gefilterd);
+  if (!lijstWeergave) updateMap(gefilterd);
+}
+
   function initMap() {
     kaart = L.map('map').setView([50.8503, 4.3517], 13);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {

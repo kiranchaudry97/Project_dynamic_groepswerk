@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
   
-       //informatie van alle locaties +  fetch data uit ieders link
+       //informatie van alle locaties + fetch data uit ieders link
       if (locatieContainer) {
         async function fetchLocaties() {
           try {
@@ -317,7 +317,7 @@ document.addEventListener('DOMContentLoaded', () => {
         zoekFout.style.display = "block";
         setTimeout(() => {
           zoekFout.style.display = "none";
-        }, 3000); // 3 seconden
+        }, 3000); 
               });
       
       

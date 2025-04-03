@@ -1352,3 +1352,43 @@ body.dark .user-comments th {
 body.dark .user-comments td {
   color: white;
 }
+
+
+/*responsive*/
+@media screen and (max-width: 768px) {
+  .vaardigheden-raster {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .vaardigheden-raster {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .top-3-locaties .locatie {
+    width: 90%;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .stripmenu,
+  .striponderdeel {
+    padding: 20px;
+    border-radius: 30px;
+  }
+
+  .stripmenu h1,
+  .striponderdeel h1 {
+    font-size: 1.5rem;
+  }
+
+  .stripmenu p,
+  .striponderdeel p {
+    font-size: 1rem;
+  }
+}
+

@@ -27,7 +27,7 @@ bruxellesdata.opendatasoft.com/api/explore/v2.1/catalog/datasets/bruxelles_parco
 Api bron algemeen : bruxellesdata.opendatasoft.com/api/explore/v2.1/catalog/datasets/bruxelles_parcours_bd/records?limit=10
 
 
-Api bron van elk kunst afbeeldingen:
+Api bron van elk kunst ![alt text](image.png)afbeeldingen:
 -	https://www.parcoursbd.brussels/wp-content/uploads/2021/09/15_asterix_obelix_rue_buanderie_06-768x576.jpg
 -	https://www.parcoursbd.brussels/wp-content/uploads/2021/09/06_billy_the_cat_rue_ophem_01_vb-685x1024.jpg
 -	https://www.parcoursbd.brussels/wp-content/uploads/2021/09/08_blake_mortimer_rue_temple_01-768x1024.jpeg
