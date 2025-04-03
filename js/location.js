@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const toggleBtn = document.getElementById("toggleView");
     const mapElement = document.getElementById("map");
     const foutmeldingDiv = document.getElementById("foutmelding");
-    
 
   
     let alleLocaties = [];
@@ -436,6 +435,22 @@ function verzendOpmerking() {
   document.getElementById("opmerking").value = "";
   bevestiging.style.display = "block";
 }
+
+
+const customLocaties = JSON.parse(localStorage.getItem("customLocaties")) || [];
+
+const omgezetteCustoms = customLocaties.map(loc => ({
+  titre: loc.naam,
+  description: loc.beschrijving,
+  auteur: "Beheerder",
+  adresse: "Nog niet gespecificeerd",
+  realisation: new Date().getFullYear(),
+  images: [{ url: loc.afbeelding || "https://via.placeholder.com/400x200?text=Geen+afbeelding" }],
+  geo_point_2d: null
+}));
+
+alleLocaties = extraLocaties.concat(omgezetteCustoms);
+
 
 
 

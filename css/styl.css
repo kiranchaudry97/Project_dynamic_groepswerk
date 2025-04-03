@@ -1219,3 +1219,65 @@ body.dark .add-location textarea {
   background-color: #e63b3b;
 }
 
+
+/*from van toevoegen van locatie */
+.admin-blok {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  max-width: 700px;
+  margin: 40px auto;
+  border: 1px solid #eee;
+}
+
+.admin-blok h2 {
+  text-align: center;
+  color: #C4501B;
+  margin-bottom: 20px;
+}
+
+.admin-form .form-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-form label {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.admin-form input,
+.admin-form textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.admin-form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.admin-form .center {
+  text-align: center;
+}
+
+.admin-button {
+  background-color: #C4501B;
+  color: white;
+  padding: 12px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition:  0.2s ease-in-out;
+}
+
+.admin-button:hover {
+  background-color: #a63b11;
+}
+
+

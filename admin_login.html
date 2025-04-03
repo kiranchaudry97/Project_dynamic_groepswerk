@@ -26,18 +26,36 @@
     <h1>Beheerder Dashboard</h1>
 
     <!-- Sectie: Nieuwe locatie toevoegen -->
-    <section class="add-location">
-      <h2>Voeg een nieuwe locatie toe</h2>
-      <form id="locationForm">
-        <label for="locationName">Locatie naam:</label>
-        <input type="text" id="locationName" required placeholder="Naam van locatie">
-
-        <label for="locationDescription">Beschrijving:</label>
-        <textarea id="locationDescription" required placeholder="Beschrijving van locatie"></textarea>
-
-        <button type="submit">Voeg locatie toe</button>
+    <section class="admin-blok">
+      <h2>➕ Voeg een nieuwe locatie toe</h2>
+      <form id="locationForm" class="admin-form">
+        <div class="form-group">
+          <label for="locationName">📌 Naam van locatie</label>
+          <input type="text" id="locationName" required placeholder="Bijv. Stripmuur ABC" />
+        </div>
+    
+        <div class="form-group">
+          <label for="locationDescription">📝 Beschrijving</label>
+          <textarea id="locationDescription" required placeholder="Korte omschrijving van de locatie..."></textarea>
+        </div>
+    
+        <div class="form-group">
+          <label for="locationAddress">📍 Adres</label>
+          <input type="text" id="locationAddress" placeholder="Straatnaam + nummer, stad" />
+        </div>
+    
+        <div class="form-group">
+          <label for="locationImage">🖼️ Afbeelding URL</label>
+          <input type="text" id="locationImage" placeholder="https://..." />
+        </div>
+    
+        <div class="form-group center">
+          <button type="submit" class="admin-button">➕ Toevoegen aan locaties</button>
+        </div>
       </form>
     </section>
+    
+    
 
     <!-- Sectie: Beheren van locaties -->
     <section class="location-list">

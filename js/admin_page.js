@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", function () {
     { name: "Manneken Pis", description: "Bekende bronzen beeld." }
   ];
 
-  // Mock locaties toevoegen aan de tabel
   mockLocations.forEach(location => {
     let row = locationTable.insertRow();
     row.insertCell(0).textContent = location.name;
@@ -24,7 +23,6 @@ document.addEventListener("DOMContentLoaded", function () {
     deleteCell.appendChild(deleteButton);
   });
 
-  // Haal favorieten op uit localStorage
   const userFavorites = JSON.parse(localStorage.getItem("favorieten")) || [];
   userFavorites.forEach((item, index) => {
     let row = favoritesTable.insertRow();
@@ -49,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
     window.location.reload();
   }
 
-  // Ophalen en opslaan van custom locaties
+  // Ophalen en tonen van custom locaties
   const customLocaties = JSON.parse(localStorage.getItem("customLocaties")) || [];
 
   customLocaties.forEach((locatie, index) => {
@@ -96,4 +94,35 @@ document.addEventListener("DOMContentLoaded", function () {
     localStorage.setItem("gebruikersOpmerkingen", JSON.stringify(opmerkingen));
     location.reload();
   }
+
+  document.getElementById("locationForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const naam = document.getElementById("locationName").value.trim();
+    const beschrijving = document.getElementById("locationDescription").value.trim();
+    const adres = document.getElementById("locationAddress")?.value.trim() || "Nog niet gespecificeerd";
+    const afbeelding = document.getElementById("locationImage")?.value.trim() || "https://via.placeholder.com/400x200?text=Geen+afbeelding";
+
+    if (!naam || !beschrijving) {
+      alert("⚠️ Vul alle verplichte velden in.");
+      return;
+    }
+
+    const customLocaties = JSON.parse(localStorage.getItem("customLocaties")) || [];
+
+    customLocaties.push({
+      naam,
+      beschrijving,
+      auteur: "Beheerder",
+      realisation: new Date().getFullYear(),
+      adresse: adres,
+      afbeelding: afbeelding,
+      images: [{ url: afbeelding }]
+    });
+
+    localStorage.setItem("customLocaties", JSON.stringify(customLocaties));
+    alert("✅ Locatie toegevoegd!");
+    location.reload();
+  });
+
 });
