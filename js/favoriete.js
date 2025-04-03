@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   const locatieContainer = document.getElementById("locaties");
   const zoekveld = document.getElementById("zoekveld");
   const auteurFilter = document.getElementById("auteurFilter");
@@ -19,21 +19,19 @@ document.addEventListener('DOMContentLoaded', () => {
       const data = await response.json();
       alleLocaties = data.results;
 
-      // notatie: Voeg custom locaties toe uit localStorage
       const custom = JSON.parse(localStorage.getItem("customLocaties")) || [];
       custom.forEach(loc => {
         alleLocaties.push({
           titre: loc.naam,
           auteur: "Handmatig toegevoegd",
           description: loc.beschrijving,
-          adresse: "Geen adres opgegeven",
-          realisation: new Date().getFullYear(),
-          images: [],
+          adresse: loc.adresse || "Geen adres opgegeven",
+          realisation: loc.realisation || new Date().getFullYear(),
+          images: [{ url: loc.afbeelding || "https://via.placeholder.com/400x200?text=Geen+afbeelding" }],
           geo_point_2d: null
         });
       });
 
-      // Verwijder locaties die door admin zijn gemarkeerd
       const verwijderde = JSON.parse(localStorage.getItem("verwijderdeLocaties")) || [];
       alleLocaties = alleLocaties.filter(loc => !verwijderde.includes(loc.titre));
 
@@ -65,22 +63,30 @@ document.addEventListener('DOMContentLoaded', () => {
       const kaart = document.createElement("div");
       kaart.className = "locatie-kaart";
 
-      const favorietKnopHTML = isUser
-        ? `<button class="favoriet-btn" onclick="voegToeAanFavorieten('${titel}', \`${beschrijving}\`, '${adres}', '${afbeelding}')">❤️ Voeg toe</button>`
-        : "";
-
-      kaart.innerHTML = `
+      const inhoud = document.createElement("div");
+      inhoud.className = "locatie-inhoud";
+      inhoud.innerHTML = `
         <img src="${afbeelding}" alt="Afbeelding van ${titel}" class="locatie-afbeelding">
-        <div class="locatie-inhoud">
-          <h2>${titel}</h2>
-          <p><strong>🎨 Kunst:</strong> ${auteur}</p>
-          <p><strong>📍 Locatie:</strong> ${adres}</p>
-          <p><strong>📅 Jaar:</strong> ${realisatie}</p>
-          <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(adres)}" 
-             target="_blank" class="kaart-link">🔗 Open in Google Maps</a>
-          ${favorietKnopHTML}
-        </div>
+        <h2>${titel}</h2>
+        <p><strong>🎨 Kunst:</strong> ${auteur}</p>
+        <p><strong>📍 Locatie:</strong> ${adres}</p>
+        <p><strong>📅 Jaar:</strong> ${realisatie}</p>
+        <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(adres)}" 
+           target="_blank" class="kaart-link">🔗 Open in Google Maps</a>
       `;
+
+      if (isUser) {
+        const knop = document.createElement("button");
+        knop.className = "favoriet-btn";
+        knop.textContent = "❤️ Voeg toe";
+        knop.addEventListener("click", (e) => {
+          e.stopPropagation();
+          voegToeAanFavorieten(titel, beschrijving, adres, afbeelding);
+        });
+        inhoud.appendChild(knop);
+      }
+
+      kaart.appendChild(inhoud);
 
       kaart.addEventListener("click", () => {
         sessionStorage.setItem("detailLocatie", JSON.stringify(record));
@@ -188,7 +194,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   fetchLocaties();
 
-  // notatie : Favorieten laden op favorietenpagina (indien aanwezig)
   if (favorietenGrid) {
     const favorieten = JSON.parse(localStorage.getItem("favorieten")) || [];
 
@@ -207,13 +212,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function voegToeAanFavorieten(titel, beschrijving, adres, afbeelding) {
   const favorieten = JSON.parse(localStorage.getItem("favorieten")) || [];
-  const bestaatAl = favorieten.some(fav => fav.titel === titel && fav.adres === adres);
+  const uniekeID = `${titel}_${adres}`.replace(/\s+/g, "_").toLowerCase();
+  const bestaatAl = favorieten.some(fav => fav.id === uniekeID);
+
   if (bestaatAl) {
     alert("⚠️ Deze locatie zit al in je favorieten.");
     return;
   }
 
-  favorieten.push({ titel, beschrijving, adres, afbeelding });
+  favorieten.push({ id: uniekeID, titel, beschrijving, adres, afbeelding });
   localStorage.setItem("favorieten", JSON.stringify(favorieten));
   alert("✅ Toegevoegd aan favorieten!");
 

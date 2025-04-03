@@ -30,6 +30,49 @@
 </main>
 
 <script src="js/log.js"></script>
+<script>"js/favorieten.js"</script>
+
+<script>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const favorietenGrid = document.getElementById("favorietenGrid");
+    const favorieten = JSON.parse(localStorage.getItem("favorieten")) || [];
+
+    if (favorieten.length === 0) {
+      favorietenGrid.innerHTML = "<p>Je hebt nog geen favorieten toegevoegd.</p>";
+      return;
+    }
+
+    favorieten.forEach((fav, index) => {
+      const kaart = document.createElement("div");
+      kaart.className = "locatie-kaart";
+
+      kaart.innerHTML = `
+        <img src="${fav.afbeelding}" alt="Afbeelding van ${fav.titel}" class="locatie-afbeelding" />
+        <div class="locatie-inhoud">
+          <h2>${fav.titel}</h2>
+          <p><strong>📍 Adres:</strong> ${fav.adres}</p>
+          <p>${fav.beschrijving}</p>
+          <button onclick="verwijderFavoriet(${index})">❌ Verwijder</button>
+        </div>
+      `;
+
+      favorietenGrid.appendChild(kaart);
+    });
+  });
+
+  function verwijderFavoriet(index) {
+    const favorieten = JSON.parse(localStorage.getItem("favorieten")) || [];
+    favorieten.splice(index, 1);
+    localStorage.setItem("favorieten", JSON.stringify(favorieten));
+    location.reload();
+  }
+
+  window.verwijderFavoriet = verwijderFavoriet;
+</script>
+
+</script>
 
 </body>
 </html>
