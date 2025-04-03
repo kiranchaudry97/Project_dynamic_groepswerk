@@ -86,3 +86,12 @@ Toevoegen nieuwe locaties op de website via form op de admin-page: als de admin 
 Toevoegen drie beste locaties van alle locaties op home pagina (kiran)
 
 Challenges: We hebben er dus voor gekozen om in de admin_pagina een tabel aan te maken die ervoor zorgt dat de admin een locatie kan toevoegen en dat het echt op de locatie.html pagina wordt toegeviegd. Jammer genoeg hebben we veel tijd gespendeerd om dit probleel te kunnen oplossen, want voor ons was het logisch om de admin de taak te geven een locatie te kunnen tovoegen en verwijderen zelfs al was dit niet gevraagd in de opdracht. Daarom hebben we ervoor gekozen om deze functionaliteit zo te laten en dat het enkel te zien is in de admin-pagina.Tweede probleem is dat sommige locaties niet willen opgeslagen worden als favoriet en we hebben dus de oplossing op dit probleem niet gevinden.
+
+
+foto van de web
+![alt text](image-4.png)
+![alt text](image-3.png)
+![alt text](image-5.png)
+![alt text](image-7.png)
+![alt text](image-8.png)
+![alt text](image-9.png)
