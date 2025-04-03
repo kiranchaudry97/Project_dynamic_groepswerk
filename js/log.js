@@ -97,4 +97,4 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   
   window.verwijderFavoriet = verwijderFavoriet;
-  
+  /*final */
