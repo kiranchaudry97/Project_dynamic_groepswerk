@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  // Thema toggle
+  // Thema toggle met licht en donker
   const toggleButton = document.getElementById('toggleTheme');
   const body = document.body;
 
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  const container = document.querySelector(".top-3-locaties"); // of andere sectie
+  const container = document.querySelector(".top-3-locaties"); 
 const opgeslagen = JSON.parse(localStorage.getItem("customLocaties")) || [];
 
 opgeslagen.slice(-1).forEach(locatie => {

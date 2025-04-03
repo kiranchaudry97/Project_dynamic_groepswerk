@@ -20,7 +20,7 @@
     <li><a href="#" onclick="logoutUser()">Logout</a></li>
   </ul>
 </nav>
-
+<!--Hoofdtitel pagina -->
 <header class="paginaf-header">
   <h1>❤️ Mijn Favorieten</h1>
 </header>
@@ -32,6 +32,7 @@
 <script src="js/log.js"></script>
 <script>"js/favorieten.js"</script>
 
+<!-- Grids van de favoriete locaties van de gebruiker -->
 <script>
 
   <script>
@@ -47,7 +48,7 @@
     favorieten.forEach((fav, index) => {
       const kaart = document.createElement("div");
       kaart.className = "locatie-kaart";
-
+// verwijderen van de gekozen locaties
       kaart.innerHTML = `
         <img src="${fav.afbeelding}" alt="Afbeelding van ${fav.titel}" class="locatie-afbeelding" />
         <div class="locatie-inhoud">

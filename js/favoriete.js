@@ -108,40 +108,41 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function vulJaarFilter(data) {
-    const jaren = [...new Set(data.map(item => item.realisation).filter(Boolean))].sort((a, b) => a - b);
+    const jaren = [...new Set(data.map(item => item.realisation).filter(Boolean))].sort();
     jaren.forEach(jaar => {
       const optie = document.createElement("option");
       optie.value = jaar;
       optie.textContent = jaar;
       jaarFilter.appendChild(optie);
     });
-  }
+  }  
 
   function filterLocaties() {
-    const zoekterm = zoekveld.value.toLowerCase();
-    const geselecteerdeAuteur = auteurFilter.value;
-    const geselecteerdJaar = jaarFilter.value;
-
-    let gefilterd = alleLocaties.filter(r => {
-      const matchTitel = r.titre?.toLowerCase().includes(zoekterm);
-      const matchBeschrijving = r.description?.toLowerCase().includes(zoekterm);
-      const matchAuteur = geselecteerdeAuteur === "" || r.auteur === geselecteerdeAuteur;
-      const matchJaar = geselecteerdJaar === "" || r.realisation == geselecteerdJaar;
-      return (matchTitel || matchBeschrijving) && matchAuteur && matchJaar;
+    const zoek = zoekveld.value.toLowerCase();
+    const auteur = auteurFilter.value;
+    const jaar = jaarFilter.value;
+    const sorteer = sorteerSelect.value;
+  
+    const gefilterd = alleLocaties.filter(loc => {
+      return (
+        (loc.titre?.toLowerCase().includes(zoek) || loc.description?.toLowerCase().includes(zoek)) &&
+        (!auteur || loc.auteur === auteur) &&
+        (!jaar || loc.realisation == jaar)
+      );
     });
-
-    if (sorteerSelect.value === "nieuwste") {
-      gefilterd.sort((a, b) => (b.realisation || 0) - (a.realisation || 0));
-    } else if (sorteerSelect.value === "oudste") {
-      gefilterd.sort((a, b) => (a.realisation || 0) - (b.realisation || 0));
-    } else if (sorteerSelect.value === "az") {
-      gefilterd.sort((a, b) => (a.titre || "").localeCompare(b.titre || ""));
-    }
-
+  
+    const sorteerFuncties = {
+      nieuwste: (a, b) => (b.realisation || 0) - (a.realisation || 0),
+      oudste: (a, b) => (a.realisation || 0) - (b.realisation || 0),
+      az: (a, b) => (a.titre || "").localeCompare(b.titre || "")
+    };
+  
+    if (sorteerFuncties[sorteer]) gefilterd.sort(sorteerFuncties[sorteer]);
+  
     toonLocaties(gefilterd);
     if (!lijstWeergave) updateMap(gefilterd);
   }
-
+  
   function initMap() {
     kaart = L.map('map').setView([50.8503, 4.3517], 13);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {

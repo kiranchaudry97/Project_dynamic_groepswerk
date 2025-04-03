@@ -14,6 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let markers = [];
     let lijstWeergave = true;
 
+    //foutmelding bij het laden van data
+
     function showError(boodschap = "Er is een fout opgetreden tijdens het laden van de gegevens.") {
         if (foutmeldingDiv) {
           foutmeldingDiv.textContent = `❌ ${boodschap}`;
@@ -21,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
   
+       //informatie van alle locaties +  fetch data uit ieders link
       if (locatieContainer) {
         async function fetchLocaties() {
           try {
