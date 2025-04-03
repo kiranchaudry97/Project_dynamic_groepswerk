@@ -3,12 +3,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const favoritesTable = document.getElementById('favoritesTable').getElementsByTagName('tbody')[0];
   const commentsTable = document.getElementById('commentsTable').getElementsByTagName('tbody')[0];
 
-  // Functie om gegevens uit localStorage te laden
   function laadGegevens(key) {
     return JSON.parse(localStorage.getItem(key)) || [];
   }
 
-  // Algemene functie voor verwijderen van gegevens uit localStorage
   function verwijderItem(key, index) {
     const items = laadGegevens(key);
     items.splice(index, 1);
@@ -16,19 +14,20 @@ document.addEventListener("DOMContentLoaded", function () {
     location.reload();
   }
 
-  // Favorieten tonen
-  laadGegevens("favorieten").forEach((item, index) => {
-    let row = favoritesTable.insertRow();
-    row.insertCell(0).textContent = item.titel;
-    row.insertCell(1).textContent = item.beschrijving || "Geen beschrijving.";
-    row.insertCell(2).textContent = "1";
+  // Favorieten tonen ZONDER acties kolom
+  function laadFavorieten() {
+    favoritesTable.innerHTML = '';
+    const favorieten = laadGegevens("favorieten");
 
-    let actieCell = row.insertCell(3);
-    let deleteButton = document.createElement('button');
-    deleteButton.textContent = 'Verwijder';
-    deleteButton.onclick = () => verwijderItem("favorieten", index);
-    actieCell.appendChild(deleteButton);
-  });
+    favorieten.forEach((item) => {
+      let row = favoritesTable.insertRow();
+      row.insertCell(0).textContent = item.titel;
+      row.insertCell(1).textContent = item.beschrijving || "Geen beschrijving.";
+      row.insertCell(2).textContent = "1";
+    });
+  }
+
+  laadFavorieten();
 
   // Custom locaties tonen
   laadGegevens("customLocaties").forEach((locatie, index) => {
