@@ -3,11 +3,22 @@ document.addEventListener("DOMContentLoaded", function () {
   const favoritesTable = document.getElementById('favoritesTable').getElementsByTagName('tbody')[0];
   const commentsTable = document.getElementById('commentsTable').getElementsByTagName('tbody')[0];
 
-  // Favorieten tonen
-  const userFavorites = JSON.parse(localStorage.getItem("favorieten")) || [];
-  userFavorites.forEach((item, index) => {
-    let row = favoritesTable.insertRow();
+  // Functie om gegevens uit localStorage te laden
+  function laadGegevens(key) {
+    return JSON.parse(localStorage.getItem(key)) || [];
+  }
 
+  // Algemene functie voor verwijderen van gegevens uit localStorage
+  function verwijderItem(key, index) {
+    const items = laadGegevens(key);
+    items.splice(index, 1);
+    localStorage.setItem(key, JSON.stringify(items));
+    location.reload();
+  }
+
+  // Favorieten tonen
+  laadGegevens("favorieten").forEach((item, index) => {
+    let row = favoritesTable.insertRow();
     row.insertCell(0).textContent = item.titel;
     row.insertCell(1).textContent = item.beschrijving || "Geen beschrijving.";
     row.insertCell(2).textContent = "1";
@@ -15,22 +26,12 @@ document.addEventListener("DOMContentLoaded", function () {
     let actieCell = row.insertCell(3);
     let deleteButton = document.createElement('button');
     deleteButton.textContent = 'Verwijder';
-    deleteButton.onclick = function () {
-      verwijderFavoriet(index);
-    };
+    deleteButton.onclick = () => verwijderItem("favorieten", index);
     actieCell.appendChild(deleteButton);
   });
 
-  function verwijderFavoriet(index) {
-    const favorieten = JSON.parse(localStorage.getItem("favorieten")) || [];
-    favorieten.splice(index, 1);
-    localStorage.setItem("favorieten", JSON.stringify(favorieten));
-    window.location.reload();
-  }
-
-  // Custom locaties ophalen en tonen
-  const customLocaties = JSON.parse(localStorage.getItem("customLocaties")) || [];
-  customLocaties.forEach((locatie, index) => {
+  // Custom locaties tonen
+  laadGegevens("customLocaties").forEach((locatie, index) => {
     let row = locationTable.insertRow();
     row.insertCell(0).textContent = locatie.naam;
     row.insertCell(1).textContent = locatie.beschrijving;
@@ -38,46 +39,28 @@ document.addEventListener("DOMContentLoaded", function () {
     let deleteCell = row.insertCell(2);
     let deleteButton = document.createElement('button');
     deleteButton.textContent = 'Verwijder';
-    deleteButton.onclick = function () {
-      verwijderLocatie(index);
-    };
+    deleteButton.onclick = () => verwijderItem("customLocaties", index);
     deleteCell.appendChild(deleteButton);
   });
 
-  function verwijderLocatie(index) {
-    const locaties = JSON.parse(localStorage.getItem("customLocaties")) || [];
-    locaties.splice(index, 1);
-    localStorage.setItem("customLocaties", JSON.stringify(locaties));
-    location.reload();
-  }
-
   // Gebruikersopmerkingen tonen
-  const opmerkingen = JSON.parse(localStorage.getItem("gebruikersOpmerkingen")) || [];
-  opmerkingen.forEach((item, index) => {
+  laadGegevens("gebruikersOpmerkingen").forEach((item, index) => {
     let row = commentsTable.insertRow();
-    row.insertCell(0).textContent = item.locatie || "Onbekend";
-    row.insertCell(1).textContent = item.opmerking || "Geen opmerking.";
+    row.insertCell(0).textContent = item.voornaam || "Onbekend";
+    row.insertCell(1).textContent = item.achternaam || "Onbekend";
+    row.insertCell(2).textContent = item.email || "Geen e-mail";
+    row.insertCell(3).textContent = item.telefoonnummer || "Geen telefoonnummer";
+    row.insertCell(4).textContent = item.opmerking || "Geen opmerking.";
 
-    let actieCell = row.insertCell(2);
+    let actieCell = row.insertCell(5);
     let deleteBtn = document.createElement("button");
     deleteBtn.textContent = "Verwijder";
-    deleteBtn.onclick = function () {
-      verwijderOpmerking(index);
-    };
+    deleteBtn.onclick = () => verwijderItem("gebruikersOpmerkingen", index);
     actieCell.appendChild(deleteBtn);
   });
 
-  function verwijderOpmerking(index) {
-    const opmerkingen = JSON.parse(localStorage.getItem("gebruikersOpmerkingen")) || [];
-    opmerkingen.splice(index, 1);
-    localStorage.setItem("gebruikersOpmerkingen", JSON.stringify(opmerkingen));
-    location.reload();
-  }
-
-  // ✅ Check of admin is ingelogd
-  const isAdmin = localStorage.getItem("isAdmin") === "true";
-
-  if (isAdmin) {
+  // Admin controle
+  if (localStorage.getItem("isAdmin") === "true") {
     document.getElementById("locationForm").addEventListener("submit", function (e) {
       e.preventDefault();
 
@@ -91,8 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
-      const customLocaties = JSON.parse(localStorage.getItem("customLocaties")) || [];
-
+      const customLocaties = laadGegevens("customLocaties");
       customLocaties.push({
         naam,
         beschrijving,
@@ -108,7 +90,6 @@ document.addEventListener("DOMContentLoaded", function () {
       location.reload();
     });
   } else {
-    // Als geen admin, verberg formulier of toon melding
     const formElement = document.getElementById("locationForm");
     if (formElement) {
       formElement.style.display = "none";
@@ -118,4 +99,3 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 });
-

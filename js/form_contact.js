@@ -14,6 +14,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     alert(`Bedankt, ${voornaam}! Je bericht is succesvol verzonden.`);
+
+    const opmerkingen = JSON.parse(localStorage.getItem("gebruikersOpmerkingen")) || [];
+    opmerkingen.push({ voornaam, achternaam, email, telefoonnummer: telefoon, opmerking });
+    localStorage.setItem("gebruikersOpmerkingen", JSON.stringify(opmerkingen));
+
     this.reset();
   });
 });

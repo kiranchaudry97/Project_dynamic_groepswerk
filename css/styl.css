@@ -1281,3 +1281,74 @@ body.dark .add-location textarea {
 }
 
 
+/*gebruikersopmerkingen */
+/*gebruikersopmerkingen */
+.user-comments {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.user-comments table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.user-comments th,
+.user-comments td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  font-size: 0.95rem;
+}
+
+.user-comments th {
+  background-color: #dedcff;
+  color: #1c1c3a;
+  font-weight: 600;
+}
+
+.user-comments td button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: white;
+  background-color: #ff5555;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.user-comments td button:hover {
+  background-color: #d13c3c;
+}
+
+.user-comments h2 {
+  text-align: center;
+  color: #d13c3c;
+}
+
+/* Dark mode */
+body.dark .user-comments {
+  background-color: #1f1f1f;
+  color: white;
+}
+
+body.dark .user-comments table {
+  background-color: #2a2a2a;
+}
+
+body.dark .user-comments th {
+  background-color: #333366;
+  color: white;
+}
+
+body.dark .user-comments td {
+  color: white;
+}
