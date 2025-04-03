@@ -483,11 +483,11 @@ body.dark .voettekst {
 
 .filters input,
 .filters select {
-  padding: 10px 15px;
+  padding: 5px 10px;
   border-radius: 30px;
   border: 1px solid #ccc;
   font-size: 0.95rem;
-  min-width: 200px;
+  min-width: 100px;
   background-color: #f5f5f5;
   color: #333;
   cursor: pointer;

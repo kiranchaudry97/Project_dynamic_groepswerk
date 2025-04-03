@@ -124,8 +124,25 @@ document.addEventListener('DOMContentLoaded', () => {
               geo_point_2d: { lat: 50.83919871, lon: 4.342035033825081 }
             }
           ];
+
+        const customLocaties = JSON.parse(localStorage.getItem("customLocaties")) || [];
+
+        const omgezetteCustoms = customLocaties.map(loc => ({
+        titre: loc.naam,
+        description: loc.beschrijving,
+        auteur: loc.auteur || "Beheerder",
+        adresse: loc.adresse || "Nog niet gespecificeerd",
+         realisation: loc.realisation || new Date().getFullYear(),
+           images: [{ url: loc.afbeelding || "https://via.placeholder.com/400x200?text=Geen+afbeelding" }],
+           geo_point_2d: null 
+}));
+
+        alleLocaties = alleLocaties.concat(omgezetteCustoms);
+
   
           alleLocaties = extraLocaties; 
+
+          
 
   
           toonLocaties(alleLocaties);
@@ -135,6 +152,8 @@ document.addEventListener('DOMContentLoaded', () => {
           locatieContainer.innerHTML = `<p>❌ Fout bij laden van data.</p>`;
         }
       }
+
+      
   
       function toonLocaties(data) {
         locatieContainer.innerHTML = "";
@@ -436,20 +455,6 @@ function verzendOpmerking() {
   bevestiging.style.display = "block";
 }
 
-
-const customLocaties = JSON.parse(localStorage.getItem("customLocaties")) || [];
-
-const omgezetteCustoms = customLocaties.map(loc => ({
-  titre: loc.naam,
-  description: loc.beschrijving,
-  auteur: "Beheerder",
-  adresse: "Nog niet gespecificeerd",
-  realisation: new Date().getFullYear(),
-  images: [{ url: loc.afbeelding || "https://via.placeholder.com/400x200?text=Geen+afbeelding" }],
-  geo_point_2d: null
-}));
-
-alleLocaties = extraLocaties.concat(omgezetteCustoms);
 
 
 

@@ -3,33 +3,14 @@ document.addEventListener("DOMContentLoaded", function () {
   const favoritesTable = document.getElementById('favoritesTable').getElementsByTagName('tbody')[0];
   const commentsTable = document.getElementById('commentsTable').getElementsByTagName('tbody')[0];
 
-  const mockLocations = [
-    { name: "Atomium", description: "Iconisch monument in Brussel." },
-    { name: "Grand Place", description: "Centraal plein van Brussel." },
-    { name: "Manneken Pis", description: "Bekende bronzen beeld." }
-  ];
-
-  mockLocations.forEach(location => {
-    let row = locationTable.insertRow();
-    row.insertCell(0).textContent = location.name;
-    row.insertCell(1).textContent = location.description;
-
-    let deleteCell = row.insertCell(2);
-    let deleteButton = document.createElement('button');
-    deleteButton.textContent = 'Verwijder';
-    deleteButton.onclick = function () {
-      locationTable.deleteRow(row.rowIndex - 1);
-    };
-    deleteCell.appendChild(deleteButton);
-  });
-
+  // Favorieten tonen
   const userFavorites = JSON.parse(localStorage.getItem("favorieten")) || [];
   userFavorites.forEach((item, index) => {
     let row = favoritesTable.insertRow();
 
     row.insertCell(0).textContent = item.titel;
     row.insertCell(1).textContent = item.beschrijving || "Geen beschrijving.";
-    row.insertCell(2).textContent = "1"; // Statisch aantal keer leuk gevonden
+    row.insertCell(2).textContent = "1";
 
     let actieCell = row.insertCell(3);
     let deleteButton = document.createElement('button');
@@ -47,9 +28,8 @@ document.addEventListener("DOMContentLoaded", function () {
     window.location.reload();
   }
 
-  // Ophalen en tonen van custom locaties
+  // Custom locaties ophalen en tonen
   const customLocaties = JSON.parse(localStorage.getItem("customLocaties")) || [];
-
   customLocaties.forEach((locatie, index) => {
     let row = locationTable.insertRow();
     row.insertCell(0).textContent = locatie.naam;
@@ -71,9 +51,8 @@ document.addEventListener("DOMContentLoaded", function () {
     location.reload();
   }
 
-  // Gebruikersopmerkingen laden
+  // Gebruikersopmerkingen tonen
   const opmerkingen = JSON.parse(localStorage.getItem("gebruikersOpmerkingen")) || [];
-
   opmerkingen.forEach((item, index) => {
     let row = commentsTable.insertRow();
     row.insertCell(0).textContent = item.locatie || "Onbekend";
@@ -95,34 +74,48 @@ document.addEventListener("DOMContentLoaded", function () {
     location.reload();
   }
 
-  document.getElementById("locationForm").addEventListener("submit", function (e) {
-    e.preventDefault();
+  // ✅ Check of admin is ingelogd
+  const isAdmin = localStorage.getItem("isAdmin") === "true";
 
-    const naam = document.getElementById("locationName").value.trim();
-    const beschrijving = document.getElementById("locationDescription").value.trim();
-    const adres = document.getElementById("locationAddress")?.value.trim() || "Nog niet gespecificeerd";
-    const afbeelding = document.getElementById("locationImage")?.value.trim() || "https://via.placeholder.com/400x200?text=Geen+afbeelding";
+  if (isAdmin) {
+    document.getElementById("locationForm").addEventListener("submit", function (e) {
+      e.preventDefault();
 
-    if (!naam || !beschrijving) {
-      alert("⚠️ Vul alle verplichte velden in.");
-      return;
-    }
+      const naam = document.getElementById("locationName").value.trim();
+      const beschrijving = document.getElementById("locationDescription").value.trim();
+      const adres = document.getElementById("locationAddress")?.value.trim() || "Nog niet gespecificeerd";
+      const afbeelding = document.getElementById("locationImage")?.value.trim() || "https://via.placeholder.com/400x200?text=Geen+afbeelding";
 
-    const customLocaties = JSON.parse(localStorage.getItem("customLocaties")) || [];
+      if (!naam || !beschrijving) {
+        alert("⚠️ Vul alle verplichte velden in.");
+        return;
+      }
 
-    customLocaties.push({
-      naam,
-      beschrijving,
-      auteur: "Beheerder",
-      realisation: new Date().getFullYear(),
-      adresse: adres,
-      afbeelding: afbeelding,
-      images: [{ url: afbeelding }]
+      const customLocaties = JSON.parse(localStorage.getItem("customLocaties")) || [];
+
+      customLocaties.push({
+        naam,
+        beschrijving,
+        auteur: "Beheerder",
+        realisation: new Date().getFullYear(),
+        adresse: adres,
+        afbeelding: afbeelding,
+        images: [{ url: afbeelding }]
+      });
+
+      localStorage.setItem("customLocaties", JSON.stringify(customLocaties));
+      alert("✅ Locatie toegevoegd!");
+      location.reload();
     });
-
-    localStorage.setItem("customLocaties", JSON.stringify(customLocaties));
-    alert("✅ Locatie toegevoegd!");
-    location.reload();
-  });
-
+  } else {
+    // Als geen admin, verberg formulier of toon melding
+    const formElement = document.getElementById("locationForm");
+    if (formElement) {
+      formElement.style.display = "none";
+      const waarschuwing = document.createElement("p");
+      waarschuwing.textContent = "🔒 Enkel beheerders kunnen nieuwe locaties toevoegen.";
+      formElement.parentElement?.appendChild(waarschuwing);
+    }
+  }
 });
+
