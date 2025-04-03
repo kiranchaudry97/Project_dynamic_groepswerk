@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const data = await response.json();
       alleLocaties = data.results;
 
-      // notatie : Voeg custom locaties toe uit localStorage
+      // notatie: Voeg custom locaties toe uit localStorage
       const custom = JSON.parse(localStorage.getItem("customLocaties")) || [];
       custom.forEach(loc => {
         alleLocaties.push({
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       });
 
-      // notatie : Verwijder locaties die door admin zijn gemarkeerd
+      // Verwijder locaties die door admin zijn gemarkeerd
       const verwijderde = JSON.parse(localStorage.getItem("verwijderdeLocaties")) || [];
       alleLocaties = alleLocaties.filter(loc => !verwijderde.includes(loc.titre));
 
