@@ -12,9 +12,32 @@ BrusselsExplorer is een digitale gids, ontworpen door Kiran en Lina, voor nieuws
 - Lijst van locaties sorteren of opzoeken: Er i een zoekbalk en een sorteer functie om zo makkelijker locaties te vinden die de gebruiker specifiek zoekt. 
 - Locaties gelinkt met API: Locaties worden automatisch gelinkt met de nodige info door hun API en afbeelding. Hierbij is ook een knop Google maps om de adres van elke locatie live te kunnen zien op Google maps. Anders kan de gebruiker op de locatie klikken en meer informatie is aanwezig over de locatie zelf.
 ##  Gebruikte API’s
-| API | Beschrijving | Link | line and java map
 
 
+API 
+Deze haalt vooral de informatie gegvens van de stripmuurschilderij in Brussel, nemen vooral de title, auteur, adres, bescrhijving, de geo_point_2d van de map en de afbeeldingen. Deze zijn vooral ook gebruikt met de combinatie van JSON, Openstreetmap en google maps.
+
+bij de mappen : 
+- map.js
+- location.js
+- favoeriet.js
+
+ De API bron
+bruxellesdata.opendatasoft.com/api/explore/v2.1/catalog/datasets/bruxelles_parcours_bd/records?limit=10
+Api bron algemeen : bruxellesdata.opendatasoft.com/api/explore/v2.1/catalog/datasets/bruxelles_parcours_bd/records?limit=10
+
+
+Api bron van elk kunst afbeeldingen:
+-	https://www.parcoursbd.brussels/wp-content/uploads/2021/09/15_asterix_obelix_rue_buanderie_06-768x576.jpg
+-	https://www.parcoursbd.brussels/wp-content/uploads/2021/09/06_billy_the_cat_rue_ophem_01_vb-685x1024.jpg
+-	https://www.parcoursbd.brussels/wp-content/uploads/2021/09/08_blake_mortimer_rue_temple_01-768x1024.jpeg
+-	https://www.parcoursbd.brussels/wp-content/uploads/2021/09/54_schtroumpfs_carrefour_europe_06_vb-1-768x512.jpg
+-	https://www.parcoursbd.brussels/wp-content/uploads/2021/09/12_reves_nic_rue_fabriques_01_vb-768x514.jpg
+-	https://www.parcoursbd.brussels/wp-content/uploads/2021/09/05_bob_bobette_rue_laeken_01_vb-685x1024.jpg
+-	https://www.parcoursbd.brussels/wp-content/uploads/2021/09/40_yoko_tsuno_rue_terre_neuve_04_vb-683x1024.jpg
+-	https://www.parcoursbd.brussels/wp-content/uploads/2021/09/03_scorpion_rue_treurenberg_001-715x1024.jpg
+-	https://www.parcoursbd.brussels/wp-content/uploads/2021/09/70_petit_gilet_tunnel_basse_04-768x511.jpg
+-	https://www.parcoursbd.brussels/wp-content/uploads/2021/09/05_bob_bobette_rue_laeken_01_vb-685x1024.jpg
 
 
 ##  Installatiehandleiding
