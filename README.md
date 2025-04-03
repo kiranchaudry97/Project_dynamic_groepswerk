@@ -89,9 +89,11 @@ Challenges: We hebben er dus voor gekozen om in de admin_pagina een tabel aan te
 
 
 foto van de web
-![alt text](image-4.png)
-![alt text](image-3.png)
-![alt text](image-5.png)
-![alt text](image-7.png)
-![alt text](image-8.png)
-![alt text](image-9.png)
+!![image](https://github.com/user-attachments/assets/b2c163cd-ee7d-444b-817d-2d9981373593)
+![image](https://github.com/user-attachments/assets/342ba7b5-7f66-4d12-940f-53fc90622cdd)
+![image](https://github.com/user-attachments/assets/a2fafc0f-29ba-45d4-98d8-c4531d22f404)
+![image](https://github.com/user-attachments/assets/1a4a3a5d-3bd9-4cd6-a918-9c5980e0d6b5)
+![image](https://github.com/user-attachments/assets/45961d7f-793f-41fa-b473-a3f896b7c180)
+
+
+
