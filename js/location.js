@@ -151,6 +151,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const eersteAfbeelding = record.images.find(img => img.url);
             if (eersteAfbeelding) afbeelding = eersteAfbeelding.url;
           }
+
+          
   
           const kaart = document.createElement("div");
           kaart.className = "locatie-kaart";
@@ -225,6 +227,81 @@ document.addEventListener('DOMContentLoaded', () => {
         toonLocaties(gefilterd);
         if (!lijstWeergave) updateMap(gefilterd);
       }
+
+      
+
+      /** notatie: zoek filter  */
+      const zoekveld = document.getElementById("zoekveld");
+      const zoekBtn = document.getElementById("zoekBtn");
+      const zoekFout = document.getElementById("zoekFout");
+      
+      zoekBtn.addEventListener("click", () => {
+        const zoekterm = zoekveld.value.trim().toLowerCase();
+      
+        const resultaten = alleLocaties.filter(loc =>
+          loc.titre?.toLowerCase().includes(zoekterm) ||
+          loc.description?.toLowerCase().includes(zoekterm)
+        );
+      
+        if (zoekterm === "") {
+          zoekFout.style.display = gefilterd.length === 0 ? "block" : "none";
+
+          toonLocaties(alleLocaties); // alles tonen als leeg
+          return;
+        }
+      
+      if (gefilterd.length === 0) {
+  zoekFout.style.display = "block";
+} else {
+  zoekFout.style.display = "none";
+}
+      });
+      
+      zoekveld.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          zoekBtn.click();
+        }
+      });
+
+
+      /*timer  */
+      zoekBtn.addEventListener("click", () => {
+        const zoekterm = zoekveld.value.trim().toLowerCase();
+      
+        const resultaten = alleLocaties.filter(loc =>
+          loc.titre?.toLowerCase().includes(zoekterm) ||
+          loc.description?.toLowerCase().includes(zoekterm)
+        );
+      
+        if (zoekterm === "") {
+          zoekFout.style.display = "none";
+          toonLocaties(alleLocaties);
+          return;
+        }
+      
+        if (resultaten.length === 0) {
+          zoekFout.style.display = "block";
+          setTimeout(() => {
+            zoekFout.style.display = "none";
+          }, 3000);
+        } else {
+          zoekFout.style.display = "none";
+          toonLocaties(resultaten);
+        }
+      
+      
+      
+        toonLocaties(resultaten);
+        zoekFout.style.display = "block";
+        setTimeout(() => {
+          zoekFout.style.display = "none";
+        }, 3000); // 3 seconden
+              });
+      
+      
+      
+
   
       function initMap() {
         kaart = L.map('map').setView([50.8503, 4.3517], 13);
@@ -337,6 +414,31 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       mapDiv.innerHTML = "<p>📍 Geen locatiegegevens beschikbaar voor deze locatie.</p>";
     }
+
+
+/*notatie : opmerkingen */
+function verzendOpmerking() {
+  const tekst = document.getElementById("opmerking").value.trim();
+  const bevestiging = document.getElementById("bevestigingOpmerking");
+
+  if (tekst === "") {
+    alert("⚠️ Opmerking mag niet leeg zijn.");
+    return;
+  }
+
+  const data = JSON.parse(sessionStorage.getItem("detailLocatie"));
+  const locatie = data?.titre || "Onbekende locatie";
+
+  const opmerkingen = JSON.parse(localStorage.getItem("gebruikersOpmerkingen")) || [];
+  opmerkingen.push({ locatie, opmerking: tekst });
+  localStorage.setItem("gebruikersOpmerkingen", JSON.stringify(opmerkingen));
+
+  document.getElementById("opmerking").value = "";
+  bevestiging.style.display = "block";
+}
+
+
+
   });
   
   

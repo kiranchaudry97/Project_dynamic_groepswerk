@@ -500,6 +500,41 @@ body.dark .voettekst {
 }
 
 
+.zoekgroep {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  background-color: #f5f5f5;
+  overflow: hidden;
+}
+
+#zoekveld {
+  padding: 10px 15px;
+  border: none;
+  background-color: transparent;
+  font-size: 0.95rem;
+  outline: none;
+  min-width: 200px;
+}
+
+#zoekBtn {
+  padding: 10px 16px;
+  background-color: #C4501B;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  transition: background-color 0.3s ease;
+}
+
+#zoekBtn:hover {
+  background-color: #a63d15;
+}
+
+
 
 
 /*favoeriet*/
@@ -530,6 +565,8 @@ body.dark .voettekst {
   background-color: #ff5555;
   color: white;
 }
+
+
 
 
 /*Map*/
@@ -1115,4 +1152,70 @@ body.dark .add-location textarea {
 
 
 
+
+/*admin favoerite*/
+#favoritesTable td:nth-child(3),
+#favoritesTable th:nth-child(3) {
+  text-align: left;
+}
+#favoritesTable td:nth-child(3),
+#favoritesTable th:nth-child(3) {
+  width: 100px;
+  text-align: center;
+}
+
+
+/* locatie detail */
+.opmerking-sectie {
+  margin-top: 40px;
+  padding: 20px;
+  border: 2px solid #c4501b20;
+  border-radius: 16px;
+  background-color: #fff9f5;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center; 
+}
+
+
+.opmerking-sectie h2 {
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  color: #C4501B;
+  text-align: center;
+}
+
+.opmerking-sectie textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  font-size: 1rem;
+  resize: vertical;
+  box-sizing: border-box;
+  font-family: "Outfit", sans-serif;
+  
+
+}
+
+.verzend-opmerking {
+  font-family: "Outfit", sans-serif;
+  margin-top: 12px;
+  padding: 5px 10px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  
+}
+
+.verzend-opmerking:hover {
+  background-color: #e63b3b;
+}
 

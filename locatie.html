@@ -23,15 +23,17 @@
         </nav>
     </header>
 
+ 
+
+
     <div class="filters">
         <div class="zoekgroep">
           <input type="text" id="zoekveld" placeholder=" Zoek op titel of beschrijving..." />
           <button id="zoekBtn" title="Zoeken">🔍</button>
         </div>
 
-        <p id="zoekFout" style="display: none; color: #C4501B; text-align: center; font-weight: 500;">
-  ❌ Geen resultaten gevonden.
-</p>
+        
+        
 
         
         <select id="auteurFilter"><option value="">Alle kunstenaars</option></select>
@@ -45,6 +47,7 @@
       </div>
       
 
+
 <!-- notatie : toggle knop voor weergave -->
 <div class="toggle-view">
   <button id="toggleView">Wissel naar kaartweergave</button>
@@ -54,11 +57,24 @@
     ⚠️ Er is iets misgegaan.
 </div>
 
+
+
+
+
 <!-- notatie : informatiecontainer -->
 <section class="locatie-container">
   <h1>📍 Stripmuren & Locaties in Brussel</h1>
+  <p class="overzichtp"><a href="contact.html">Meld bij probleem of opmerking in onze contact formulier</a></p>
+
   <p>Ontdek unieke locaties met stripkunst verspreid over de stad.</p>
   <div id="locaties" class="locatie-grid"></div>
+
+
+
+  <p id="zoekFout" style="display: none; color: #C4501B; text-align: center; font-weight: 500;">
+    ❌ Deze informatie bestaat niet.
+  </p>
+
 
   <!-- notatie :tabelweergave -->
   <div id="locatieTabel" style="overflow-x: auto; display:none; margin-top: 40px;">
@@ -84,6 +100,9 @@
 <!-- notatie : scripts -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="js/location.js"></script>
+
+
+
 
 </body>
 </html>

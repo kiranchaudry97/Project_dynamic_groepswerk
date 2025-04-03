@@ -25,7 +25,7 @@
   <main class="admin-dashboard">
     <h1>Beheerder Dashboard</h1>
 
-   
+    <!-- Sectie: Nieuwe locatie toevoegen -->
     <section class="add-location">
       <h2>Voeg een nieuwe locatie toe</h2>
       <form id="locationForm">
@@ -39,7 +39,7 @@
       </form>
     </section>
 
-    
+    <!-- Sectie: Beheren van locaties -->
     <section class="location-list">
       <h2>Locaties Beheren</h2>
       <table id="locationTable">
@@ -51,11 +51,12 @@
           </tr>
         </thead>
         <tbody>
-         
+          <!-- Dynamisch ingeladen locaties -->
         </tbody>
       </table>
     </section>
 
+    <!-- Sectie: Favorieten van gebruikers -->
     <section class="user-favorites">
       <h2>Favorieten van Gebruikers</h2>
       <table id="favoritesTable">
@@ -63,15 +64,32 @@
           <tr>
             <th>Locatie</th>
             <th>Beschrijving</th>
-            <th>Acties</th>
+            <th>Aantal keer leuk gevonden</th>
+            <th>Acties</th> 
           </tr>
-        </thead>
+        </thead>         
         <tbody>
-         
+          <!-- Dynamisch ingeladen favorieten -->
         </tbody>
       </table>
     </section>
   </main>
+
+<section class="user-comments">
+  <h2>Gebruikersopmerkingen</h2>
+  <table id="commentsTable">
+    <thead>
+      <tr>
+        <th>Locatie</th>
+        <th>Opmerking</th>
+        <th>Acties</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+</section>
+
 
   <footer class="voettekst">
     <div class="voettekst-inhoud">
